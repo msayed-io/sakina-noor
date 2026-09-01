@@ -2421,3 +2421,104 @@ body::before{
   .pillar{min-height:0;padding:1.4rem 1.25rem}
   .bento-cell{min-height:9.5rem;padding:1.2rem}
 }
+
+/* ================================================================
+   EXACT SAKINA PRO MUSHAF PAGE — opening page 001
+   The page shell and surah frame intentionally mirror the source renderer.
+   ================================================================ */
+@font-face{
+  font-family:'Thmanyah Serif Display';
+  src:url('/fonts/thmanyahserifdisplay-Black.woff2') format('woff2');
+  font-display:swap;
+}
+.mushaf-preview-shell{
+  position:relative;
+  width:min(100%,24rem);
+  margin:0 auto;
+  padding:0 0 1rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:transparent;
+  box-shadow:none;
+  transform:none;
+  animation:none;
+}
+.mushaf-preview-shell:hover{transform:none;animation:none}
+.mushaf-preview-shell .mushaf-nav{width:min(100%,20rem);padding:.25rem .35rem .7rem}
+.qcf-page{
+  --qcf-font-size:18px;
+  box-sizing:border-box;
+  width:17em;
+  max-width:100%;
+  height:27.75em;
+  margin:0 auto;
+  padding:0;
+  display:grid;
+  grid-template-rows:repeat(15,minmax(0,1fr));
+  font-size:var(--qcf-font-size);
+  user-select:none;
+  background:#fff;
+  border:1px solid rgba(184,138,79,.16);
+  box-shadow:0 32px 64px rgba(43,26,16,.16),0 12px 24px rgba(43,26,16,.08);
+  color:#2b1a10;
+}
+.qcf-page.qcf-opening-page{position:relative;display:flex;flex-direction:column;justify-content:center}
+.qcf-opening-content{display:grid;grid-template-rows:repeat(8,1.85em);width:100%;height:14.8em}
+.qcf-opening-folio{position:absolute;inset-inline:0;bottom:1.1em;color:var(--qcf-accent,#8a6a3d);font-family:var(--ff),sans-serif;font-size:.78em;font-weight:700;line-height:1;text-align:center;direction:rtl;pointer-events:none}
+.qcf-line,.qcf-empty,.qcf-page .surah-header-line{box-sizing:border-box;width:100%;min-width:0;min-height:0;height:100%}
+.qcf-line{display:flex;align-items:center;direction:rtl;font-size:1em;line-height:1;white-space:nowrap}
+.qcf-line.qcf-centered{justify-content:center}
+.qcf-word{display:inline-block;flex:0 0 auto;white-space:pre;cursor:pointer;transition:background-color .15s,color .15s;border-radius:3px}
+.qcf-word:hover{background:rgba(184,147,90,.1)}
+.qcf-end-mark{color:var(--qcf-accent,#8a6a3d)}
+.qcf-preview-playing{background:rgba(184,147,90,.28);color:var(--qcf-accent,#8a6a3d)}
+.surah-header-line{display:flex;align-items:center;justify-content:center;width:100%;direction:rtl}
+.surah-frame{position:relative;isolation:isolate;display:grid;place-items:center;width:min(66%,360px);aspect-ratio:2400/775;margin:6px auto 4px;line-height:1;flex:0 0 auto;contain:layout paint;pointer-events:none;user-select:none}
+.qcf-page .surah-frame{width:auto;height:1.42em;margin:0;aspect-ratio:2400/775;contain:layout}
+.qcf-page .surah-frame__title{font-size:.48em}
+.surah-frame__art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
+.surah-frame__title{position:absolute;inset-block:31%;inset-inline:22%;z-index:1;display:grid;place-items:center;width:auto;margin:0;padding:0;overflow:visible;color:#2b1a10;font-family:'Thmanyah Serif Display',var(--fq),serif;font-size:clamp(10.5px,3.65vw,16px);font-weight:900;font-style:normal;line-height:1.08;text-align:center;text-wrap:nowrap;white-space:nowrap;letter-spacing:0;unicode-bidi:plaintext;pointer-events:none}
+.qcf-preview-accessible-text{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:480px){
+  .mushaf-preview-shell{width:min(100%,20rem)}
+  .qcf-page{--qcf-font-size:clamp(13px,4.5vw,16px)}
+}
+
+/* Hard boundary for the landing preview: preserve Sakina Pro's 17em × 27.75em page ratio. */
+.mushaf-preview-shell > .qcf-page.qcf-opening-page{
+  width:min(100%,306px) !important;
+  height:499.5px !important;
+  max-width:100% !important;
+  flex:0 0 auto !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  font-size:18px !important;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-opening-content{
+  display:grid !important;
+  grid-template-rows:repeat(8,1.85em) !important;
+  width:100% !important;
+  height:14.8em !important;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .surah-frame{
+  width:auto !important;
+  height:1.42em !important;
+  margin:0 !important;
+  aspect-ratio:2400 / 775 !important;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-line,
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-empty,
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .surah-header-line{
+  width:100% !important;
+  height:100% !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  box-sizing:border-box !important;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-line{display:flex !important;align-items:center !important;justify-content:center !important;direction:rtl !important;font-size:1em !important;line-height:1 !important;white-space:nowrap !important}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-word{display:inline-block !important;flex:0 0 auto !important;white-space:pre !important}
+@media(max-width:480px){
+  .mushaf-preview-shell > .qcf-page.qcf-opening-page{width:min(100%,288px) !important;height:470.25px !important;font-size:17px !important}
+}
