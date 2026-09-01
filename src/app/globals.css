@@ -34,8 +34,8 @@
   --sage-deep:#5a7d6a;
   --dusk:#8ca1b3;
   --dusk-deep:#667a8c;
-  --ff:'Cairo','Segoe UI',Tahoma,sans-serif;
-  --fq:'Amiri','Traditional Arabic',serif;
+  --ff:var(--font-cairo),'Segoe UI',Tahoma,sans-serif;
+  --fq:var(--font-amiri),'Traditional Arabic',serif;
   --ef:cubic-bezier(.32,.72,0,1);
   --es:cubic-bezier(.34,1.56,.64,1);
   --breath:cubic-bezier(.4,0,.2,1);
@@ -57,6 +57,7 @@
 html{
   scroll-behavior:smooth;
   -webkit-text-size-adjust:100%;
+  text-rendering:optimizeLegibility;
 }
 
 html,body{
@@ -82,6 +83,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 input{font-family:inherit}
 
 ::selection{background:var(--honey);color:var(--paper)}
+
+@supports (content-visibility:auto){
+  main > section:not(.hero){
+    content-visibility:auto;
+    contain-intrinsic-size:800px;
+  }
+}
 
 body::before{
   content:'';

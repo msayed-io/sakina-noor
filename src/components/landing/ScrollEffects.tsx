@@ -2,50 +2,53 @@
 
 import { useEffect } from 'react'
 
-/*
- * السلوكيات العامة للمستند الواحد (نُقلت حرفيًا من <script> الملف الأصلي):
- * 1) Scroll Reveal عبر IntersectionObserver
- * 2) Smooth scroll لكل روابط # مع إزاحة 80px
- */
 export default function ScrollEffects() {
   useEffect(() => {
-    /* Scroll Reveal */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const revealElements = document.querySelectorAll('.reveal, .reveal-stagger')
 
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
-      observer.observe(el);
-    });
-
-    /* Smooth scroll */
-    const smoothHandlers: Array<[Element, EventListener]> = [];
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      const handler = (e: Event) => {
-        const href = link.getAttribute('href');
-        if(href && href.length > 1){
-          const target = document.querySelector(href);
-          if(target){
-            e.preventDefault();
-            const offset = 80;
-            const top = target.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
+    if (prefersReducedMotion) {
+      revealElements.forEach((element) => element.classList.add('visible'))
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
           }
-        }
-      };
-      link.addEventListener('click', handler);
-      smoothHandlers.push([link, handler]);
-    });
+        })
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' })
+
+      revealElements.forEach((element) => observer.observe(element))
+
+      return () => observer.disconnect()
+    }
+  }, [])
+
+  useEffect(() => {
+    const handlers: Array<[Element, EventListener]> = []
+    const behavior: ScrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const handler = (event: Event) => {
+        const href = link.getAttribute('href')
+        if (!href || href.length <= 1) return
+
+        const target = document.querySelector(href)
+        if (!target) return
+
+        event.preventDefault()
+        const top = target.getBoundingClientRect().top + window.scrollY - 80
+        window.scrollTo({ top, behavior })
+      }
+
+      link.addEventListener('click', handler)
+      handlers.push([link, handler])
+    })
 
     return () => {
-      observer.disconnect();
-      smoothHandlers.forEach(([el, handler]) => el.removeEventListener('click', handler));
-    };
+      handlers.forEach(([element, handler]) => element.removeEventListener('click', handler))
+    }
   }, [])
 
   return null

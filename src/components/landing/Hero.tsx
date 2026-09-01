@@ -6,9 +6,9 @@ export default function Hero() {
   useEffect(() => {
     /* Phone parallax — منطق أصلي حرفيًا */
     const phone = document.querySelector<HTMLElement>('.phone');
-    const heroVisual = document.querySelector<Element>('.hero-visual');
+    const heroVisual = document.querySelector<HTMLElement>('.hero-visual');
 
-    if(phone && heroVisual && window.matchMedia('(pointer: fine)').matches){
+    if(phone && heroVisual && window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       const onMove = (e: MouseEvent) => {
         const rect = heroVisual.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -34,7 +34,7 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-eyebrow">رفيقك الروحي اليومي</div>
         <h1 className="hero-title">
-          <span className="accent">سكينة</span><br />
+          <span className="accent">سكينة نور</span><br />
           في كل لحظة
         </h1>
         <p className="hero-subtitle">
@@ -96,7 +96,7 @@ export default function Hero() {
             {/* Status bar */}
             <div className="phone-status">
               <span className="phone-status-time">9:41</span>
-              <span>سكينة</span>
+              <span>سكينة نور</span>
             </div>
 
             {/* App header */}
