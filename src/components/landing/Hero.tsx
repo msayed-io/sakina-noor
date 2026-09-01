@@ -34,7 +34,7 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-eyebrow">رفيقك الروحي اليومي</div>
         <h1 className="hero-title">
-          <span className="accent">سكينة نور</span><br />
+          <span className="accent">سكينة</span><br />
           في كل لحظة
         </h1>
         <p className="hero-subtitle">
@@ -96,7 +96,7 @@ export default function Hero() {
             {/* Status bar */}
             <div className="phone-status">
               <span className="phone-status-time">9:41</span>
-              <span>سكينة نور</span>
+              <span>سكينة</span>
             </div>
 
             {/* App header */}

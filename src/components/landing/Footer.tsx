@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="footer-brand">
           <div className="footer-brand-mark">
             <span className="mark">س</span>
-            <span>سكينة نور</span>
+            <span>سكينة</span>
           </div>
           <p className="footer-brand-desc">رفيقك الروحي اليومي. صلوات، أذكار، قرآن، وحصن المسلم في تطبيق واحد بتصميم هادئ يليق بخشوعك.</p>
         </div>
@@ -29,7 +29,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <div className="footer-copyright">© 2026 سكينة نور. جميع الحقوق محفوظة.</div>
+        <div className="footer-copyright">© 2026 سكينة. جميع الحقوق محفوظة.</div>
         <div className="footer-arabic">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</div>
       </div>
     </footer>

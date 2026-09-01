@@ -33,7 +33,7 @@ export default function Header() {
     <nav className="nav cut-crystal-panel" id="nav" aria-label="التنقل الرئيسي">
       <a href="#" className="nav-brand">
         <span className="nav-brand-mark">س</span>
-        <span>سكينة نور</span>
+        <span>سكينة</span>
       </a>
       <div className="nav-links">
         <a href="#features">المميزات</a>

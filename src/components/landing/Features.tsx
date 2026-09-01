@@ -121,7 +121,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">ابدأ رحلتك الآن</h3>
           </div>
-          <p className="bento-desc">حمّل سكينة نور ولتكن رفيقك الروحي في كل لحظة.</p>
+          <p className="bento-desc">حمّل سكينة ولتكن رفيقك الروحي في كل لحظة.</p>
         </div>
 
       </div>
