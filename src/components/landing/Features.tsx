@@ -4,7 +4,7 @@ export default function Features() {
       <div className="features-header">
         <div className="features-eyebrow reveal">المميزات</div>
         <h2 className="features-title reveal">كل ما تحتاجه <span className="accent">روحك</span></h2>
-        <p className="features-subtitle reveal">15 ميزة روحية متناسقة في تطبيق واحد، صُممت بعناية لتكون رفيقك في كل لحظة من يومك.</p>
+        <p className="features-subtitle reveal">أدوات أساسية لعبادتك اليومية، مرتبة في تجربة واحدة هادئة.</p>
       </div>
 
       <div className="bento reveal-stagger">
@@ -19,7 +19,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">القرآن الكريم</h3>
           </div>
-          <p className="bento-desc">نص عثماني أصلي بخط المصحف، مع تلاوات لأكثر من 50 قارئ عالمي، تحكم كامل في التشغيل، تكرار الآيات، ومؤقت النوم.</p>
+          <p className="bento-desc">مصحف المدينة بخطه الرسمي، مع تلاوات وتحكم كامل في الاستماع.</p>
           <div className="bento-arabic">بسم الله الرحمن الرحيم</div>
         </div>
 
@@ -33,7 +33,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">مواقيت الصلاة</h3>
           </div>
-          <p className="bento-desc">دقة عالية حسب موقعك، 5 طرق حسابية، ضبط تلقائي للمذهب، وعد تنازلي لكل صلاة.</p>
+          <p className="bento-desc">مواقيت دقيقة تتكيّف مع موقعك ومذهبك.</p>
         </div>
 
         <div className="bento-cell size-tall">
@@ -46,7 +46,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">إشعارات الأذان</h3>
           </div>
-          <p className="bento-desc">تنبيهات محلية للأذان ووقت الصلاة، مع تذكير قبلي قابل للتخصيص.</p>
+          <p className="bento-desc">تنبيه هادئ يوصلك إلى الصلاة في وقتها.</p>
         </div>
 
         <div className="bento-cell size-md">
@@ -59,7 +59,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">الأذكار اليومية</h3>
           </div>
-          <p className="bento-desc">أذكار الصباح والمساء، النوم، الاستيقاظ، وبعد الصلاة بعدّاد ذكي ومتابعة يومية.</p>
+          <p className="bento-desc">وردك اليومي مع عدّاد بسيط ومتابعة مستمرة.</p>
         </div>
 
         <div className="bento-cell size-md">
@@ -71,7 +71,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">حصن المسلم</h3>
           </div>
-          <p className="bento-desc">67+ تصنيف كامل من الأذكار والأدعية لأحوال يومية متنوعة.</p>
+          <p className="bento-desc">أدعية وأذكار مرتبة لأكثر من 67 حالًا يوميًا.</p>
         </div>
 
         <div className="bento-cell">
@@ -83,7 +83,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">أسماء الله الحسنى</h3>
           </div>
-          <p className="bento-desc">99 اسماً بمعانيها وتفاصيلها.</p>
+          <p className="bento-desc">الأسماء الحسنى بمعانيها وتفاصيلها.</p>
         </div>
 
         <div className="bento-cell">
@@ -96,7 +96,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">راديو إسلامي</h3>
           </div>
-          <p className="bento-desc">محطات بث مباشر على مدار الساعة.</p>
+          <p className="bento-desc">تلاوات ومحطات إسلامية على مدار الساعة.</p>
         </div>
 
         <div className="bento-cell size-md">
@@ -109,7 +109,7 @@ export default function Features() {
             </div>
             <h3 className="bento-title">حديث اليوم</h3>
           </div>
-          <p className="bento-desc">حديث شريف يومياً مع الشرح والتخريج، يُتجدّد تلقائياً.</p>
+          <p className="bento-desc">حديث يومي موثّق، يتجدد مع بداية كل يوم.</p>
         </div>
 
         <div className="bento-cell cta-cell">

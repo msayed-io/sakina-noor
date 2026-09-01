@@ -3,11 +3,11 @@ export default function Manifesto() {
     <section className="manifesto">
       <div className="manifesto-eyebrow reveal">من نحن</div>
       <h2 className="manifesto-title reveal">
-        ليس مجرد تطبيق<br />
-        <span className="accent">بل رفيقك الروحي</span>
+        أكثر من تطبيق<br />
+        <span className="accent">سكينة ليومك</span>
       </h2>
       <p className="manifesto-body reveal">
-        سكينة وُلدت لتكون رفيقك اليومي في رحلتك نحو الله. صُمّم بتأنٍّ وإتقان، يحمل بين جنباته كل ما تحتاجه روحك من <strong>صلوات دقيقة</strong>، <strong>أذكار يومية</strong>، <strong>قرآن كريم بصوت نخبة القرّاء</strong>، و<strong>حصن المسلم</strong> بأكمله. كل ميزة صُممت بروح الطمأنينة، لتكون سكينتك في كل لحظة.
+        كل ما تحتاجه لعبادتك اليومية، في تجربة واحدة هادئة ومركّزة. من <strong>الصلاة</strong> و<strong>الأذكار</strong> إلى <strong>القرآن</strong> و<strong>حصن المسلم</strong> — صُمّمت سكينة لتترك مساحة أكبر للطمأنينة.
       </p>
 
       <div className="manifesto-pillars reveal-stagger">
@@ -19,7 +19,7 @@ export default function Manifesto() {
             </svg>
           </div>
           <h3 className="pillar-title">دقة المواقيت</h3>
-          <p className="pillar-desc">مواقيت الصلاة بدقة عالية حسب موقعك الجغرافي، مع دعم 5 طرق حسابية وضبط تلقائي للمذهب.</p>
+          <p className="pillar-desc">مواقيت دقيقة تتكيّف مع موقعك ومذهبك، دون تعقيد.</p>
         </div>
 
         <div className="pillar">
@@ -30,7 +30,7 @@ export default function Manifesto() {
             </svg>
           </div>
           <h3 className="pillar-title">خشوع القرآن</h3>
-          <p className="pillar-desc">قراءة وتلاوة بنص عثماني أصلي، مع أكثر من 50 قارئ عالمي وتحكم كامل في التشغيل.</p>
+          <p className="pillar-desc">مصحف واضح وتلاوات مختارة، لتقرأ وتستمع بخشوع.</p>
         </div>
 
         <div className="pillar">
@@ -41,7 +41,7 @@ export default function Manifesto() {
             </svg>
           </div>
           <h3 className="pillar-title">طمأنينة الأذكار</h3>
-          <p className="pillar-desc">أذكار الصباح والمساء، حصن المسلم كاملاً، أسماء الله الحسنى، وعدّاد ذكي يرافق عبادتك.</p>
+          <p className="pillar-desc">وردك اليومي، في مسار بسيط يساعدك على الاستمرار.</p>
         </div>
       </div>
     </section>
