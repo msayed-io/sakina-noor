@@ -1,8 +1,8 @@
 {
-  "name": "sakina-islamic-companion",
+  "name": "sakina-noor",
   "version": "1.0.0",
   "private": false,
-  "description": "Arabic RTL landing page for Sakina, an Islamic spiritual companion app.",
+  "description": "Arabic RTL landing page for Sakina Noor, an Islamic spiritual companion app.",
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
     "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",

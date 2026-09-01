@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "سكينة | رفيقك الروحي اليومي",
+  title: "سكينة نور | رفيقك الروحي اليومي",
   description:
-    "سكينة — رفيقك الروحي اليومي. صلوات، أذكار، قرآن، وحصن المسلم في تطبيق واحد بتصميم هادئ يليق بخشوعك.",
+    "سكينة نور — رفيقك الروحي اليومي. صلوات، أذكار، قرآن، وحصن المسلم في تجربة هادئة تليق بخشوعك.",
 };
 
 export const viewport: Viewport = {
