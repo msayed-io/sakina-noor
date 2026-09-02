@@ -1,11 +1,28 @@
-# Exact Mushaf Page Review
 
-The original `surah-header-frame.webp` from Sakina Pro was copied byte-for-byte into Sakina Noor; its SHA-256 matches the source asset. The local rendered preview confirms that the exact ornate frame image is present.
+## Post-fix DOM check
 
-The visual review also exposed a layout issue in the first implementation of the exact page: the QCF page is currently too wide relative to the two-column landing section, which makes the 17em × 27.75em page ratio collapse visually and places the Arabic lines below the frame instead of inside the intended page shell. The next fix must preserve the source renderer's structure and aspect ratio, but constrain the landing preview to a portrait page width so the eight opening rows remain inside the same white page beneath the original frame/title row.
+The local page source and build include the new component and QCF asset, but one browser console context reported the mushaf shell as missing while the page extraction still included the earlier mushaf text. This indicates the browser tab may be holding a stale/hydration context or a separate viewport state; the next check should refresh/wait and inspect the rendered section again before treating it as a code failure.
 
-The source renderer's authoritative values are: `.qcf-page` width `17em`, height `27.75em`, `font-size: 18px`; opening content uses eight grid rows of `1.85em` and height `14.8em`; the surah frame image uses source dimensions `2400 × 775` and is positioned inside the first page row. The landing implementation should use these values without inventing a separate cartouche or manually drawing a replacement frame.
+## Second browser context note
 
-## Corrected visual review
+The browser extraction still shows the legacy navigation text even though the current source no longer contains that markup, while the console context reports no `.mushaf-preview-shell`. This is likely caused by the browser's extraction/visual context being stale or by the page's scroll-triggered client rendering. Source-level checks remain authoritative until a direct production-style render is captured from the rebuilt output.
 
-After the boundary fix, the local screenshot shows a portrait QCF page with the original ornate surah-frame image inside the page, the vocalized title centered inside that frame, and all Fatiha glyph rows contained within the same page surface. The player remains outside the page as an independent landing-page control. The source frame asset and source title font remain byte-for-byte identical to Sakina Pro.
+## Scroll review note
+
+Two scroll operations in the browser continued to show the extraction context with the legacy navigation text, while the checked source component has no such JSX. Treat this as a stale browser/dev-render context rather than changing the implementation back; the next verification should use a fresh production server process or inspect the built HTML from the current source.
+
+## Browser visual check after font binding
+
+The browser screenshot still shows the extractor's legacy navigation labels in the text layer, but the visible lower-page preview now shows the QCF glyph rows inside a portrait paper surface. Because the current source JSX has no navigation labels, the browser extractor is not reliable for this stale dev context. The source implementation now explicitly binds the copied `p001.woff2` to `QCF_P001`, and the production build passed; a final fresh-server smoke test should rely on HTML markers and asset responses from the rebuilt output.
+
+## Fresh production smoke review
+
+A fresh standalone production server on port 3001 served the rebuilt page. The production HTML has no `mushaf-nav` markup or Arabic `السابق` marker, includes `QCF_P001` and the original `surah-header-frame.webp`, and returns HTTP 200 for the page, frame, QCF page font, and title font. The fresh browser extraction also no longer included the legacy navigation labels, confirming that the earlier stale-context observation was not a current source issue.
+
+## Latest visual result
+
+The fresh production preview now has no `السابق/التالي` navigation above the page, and the QCF glyphs are present inside a rounded portrait paper surface. The screenshot shows the glyphs rendered in the page area, but the ornate frame image is not visually obvious at this viewport; this requires a direct image-load/computed-style check before finalizing. The production asset endpoint itself returned 200 in the smoke test.
+
+## Direct DOM verification
+
+The fresh production render reports: `QCF_P001` is loaded (`document.fonts.check` true), all 36 page glyph spans use `QCF_P001`, glyph color is `rgb(43, 26, 16)`, page background is `rgb(252, 250, 244)`, and page border radius is `18.4px`. The exact frame image is complete with natural dimensions `2400 × 775`, visible, and rendered inside its source-sized ratio. No `.mushaf-nav` element exists in the fresh production DOM.

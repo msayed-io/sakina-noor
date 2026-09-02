@@ -2522,3 +2522,32 @@ body::before{
 @media(max-width:480px){
   .mushaf-preview-shell > .qcf-page.qcf-opening-page{width:min(100%,288px) !important;height:470.25px !important;font-size:17px !important}
 }
+
+/* Source font binding: the private-use glyphs must never fall back to a system font. */
+@font-face{
+  font-family:'QCF_P001';
+  src:url('/fonts/qcf/p001.woff2') format('woff2');
+  font-display:block;
+  font-style:normal;
+  font-weight:400;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page{
+  font-family:'QCF_P001',serif !important;
+  color:#2b1a10 !important;
+  background:#fcfaf4 !important;
+  border:1px solid rgba(184,138,79,.22) !important;
+  border-radius:1.15rem !important;
+  overflow:hidden !important;
+  box-shadow:0 30px 65px rgba(43,26,16,.15),0 10px 24px rgba(43,26,16,.08) !important;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-line,
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-word{
+  color:#2b1a10 !important;
+  font-family:'QCF_P001',serif !important;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-end-mark,
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-preview-playing{
+  color:#8a6a3d !important;
+}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-preview-playing{background:rgba(184,147,90,.24) !important}
+.mushaf-preview-shell > .qcf-page.qcf-opening-page .qcf-opening-folio{color:#8a6a3d !important}

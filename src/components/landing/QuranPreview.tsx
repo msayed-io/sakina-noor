@@ -183,8 +183,7 @@ export default function QuranPreview() {
 
         <div className="quran-visual reveal">
           <div className="mushaf-preview-shell" aria-label="صفحة المصحف الأصلية لسورة الفاتحة">
-            <div className="mushaf-nav" aria-hidden="true"><span className="mushaf-nav-link">السابق</span><span className="mushaf-nav-link">التالي</span></div>
-            <div className="qcf-page qcf-opening-page" data-mushaf-page="1" dir="rtl">
+            <div className="qcf-page qcf-opening-page" data-mushaf-page="1" dir="rtl" style={{ fontFamily: 'QCF_P001', ['--qcf-font-size' as string]: '18px' }}>
               <div className="qcf-opening-content">
                 {pageLines.map((line) => line.type === 'surah-header' ? (
                   <div key={line.line} className="surah-header-line">
