@@ -172,7 +172,7 @@ export default function QuranPreview() {
         <div className="quran-content">
           <div className="quran-eyebrow reveal">القرآن الكريم</div>
           <h2 className="quran-title reveal" id="quran-title">خشوع <span className="accent">القرآن</span><br />في كل لحظة</h2>
-          <p className="quran-body reveal">صفحة المصحف كما هي في سكينة: خط عثماني أصلي، تخطيط مضبوط، وتلاوة تبدأ عندما تختارها.</p>
+          <p className="quran-body reveal">صفحة المصحف كما هي في سَكِينَة: خط عثماني أصلي، تخطيط مضبوط، وتلاوة تبدأ عندما تختارها.</p>
           <div className="quran-features reveal-stagger">
             <div className="quran-feature"><div className="quran-feature-check"><span aria-hidden="true">✓</span></div><span>صفحة أصلية من مصحف المدينة</span></div>
             <div className="quran-feature"><div className="quran-feature-check"><span aria-hidden="true">✓</span></div><span>برواز السورة الأصلي من التطبيق</span></div>

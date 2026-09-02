@@ -4,10 +4,10 @@ export default function Manifesto() {
       <div className="manifesto-eyebrow reveal">من نحن</div>
       <h2 className="manifesto-title reveal">
         أكثر من تطبيق<br />
-        <span className="accent">سكينة ليومك</span>
+        <span className="accent">سَكِينَة ليومك</span>
       </h2>
       <p className="manifesto-body reveal">
-        كل ما تحتاجه لعبادتك اليومية، في تجربة واحدة هادئة ومركّزة. من <strong>الصلاة</strong> و<strong>الأذكار</strong> إلى <strong>القرآن</strong> و<strong>حصن المسلم</strong> — صُمّمت سكينة لتترك مساحة أكبر للطمأنينة.
+        كل ما تحتاجه لعبادتك اليومية، في تجربة واحدة هادئة ومركّزة. من <strong>الصلاة</strong> و<strong>الأذكار</strong> إلى <strong>القرآن</strong> و<strong>حصن المسلم</strong> — صُمّمت سَكِينَة لتترك مساحة أكبر للطمأنينة.
       </p>
 
       <div className="manifesto-pillars reveal-stagger">

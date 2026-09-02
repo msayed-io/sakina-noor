@@ -4,9 +4,9 @@ export default function FinalCta() {
       <div className="final-cta-card reveal">
         <div className="final-cta-content">
           <div className="final-cta-arabic">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</div>
-          <h2 className="final-cta-title">ابدأ رحلتك مع سكينة</h2>
+          <h2 className="final-cta-title">ابدأ رحلتك مع سَكِينَة</h2>
           <p className="final-cta-body">
-            حمّل سكينة الآن، ولتكن رفيقك الروحي اليومي. صلواتك، أذكارك، قرآنك، وكل ما تحتاجه روحك في تطبيق واحد.
+            حمّل سَكِينَة الآن، ولتكن رفيقك الروحي اليومي. صلواتك، أذكارك، قرآنك، وكل ما تحتاجه روحك في تطبيق واحد.
           </p>
           <div className="final-cta-buttons">
             <a href="#" className="store-badge">

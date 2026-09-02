@@ -1,20 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Amiri, Cairo } from "next/font/google";
 import "./globals.css";
-
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-  variable: "--font-cairo",
-});
-
-const amiri = Amiri({
-  subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
-  display: "swap",
-  variable: "--font-amiri",
-});
 
 const siteUrl = "https://sakina-noor.vercel.app";
 
@@ -72,11 +57,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${amiri.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://everyayah.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://everyayah.com" />
-      </head>
+    <html lang="ar" dir="rtl">
       <body>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
