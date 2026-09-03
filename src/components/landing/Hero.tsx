@@ -100,18 +100,6 @@ export default function Hero() {
       </div>
 
       <div className="hero-visual">
-        <div className="hero-ornament o1"></div>
-        <div className="hero-ornament o2"></div>
-
-        {/* Prayer beads decoration */}
-        <div className="beads">
-          <div className="bead"></div>
-          <div className="bead"></div>
-          <div className="bead"></div>
-          <div className="bead"></div>
-          <div className="bead"></div>
-        </div>
-
         {/* Realistic iPhone 16 Pro Frame */}
         <div className="phone">
           {/* Side buttons */}

@@ -563,53 +563,10 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   perspective:1200px;
   z-index:2;
 }
-.hero-visual::before{ /* the mihrab niche */
-  content:'';
-  position:absolute;
-  width:min(380px,86%);
-  aspect-ratio:1/1.42;
-  border-radius:9999px 9999px 36px 36px;
-  border:1px solid rgba(201,168,106,.32);
-  background:
-    radial-gradient(ellipse 80% 55% at 50% 0%,rgba(222,171,101,.16),transparent 65%),
-    linear-gradient(180deg,rgba(255,253,248,.05),rgba(255,253,248,.015));
-  box-shadow:inset 0 0 60px rgba(184,138,79,.08);
-  animation:breathe 9s ease-in-out infinite;
-}
-.hero-visual::after{ /* inner arch hairline */
-  content:'';
-  position:absolute;
-  width:min(344px,78%);
-  aspect-ratio:1/1.4;
-  border-radius:9999px 9999px 30px 30px;
-  border:1px solid rgba(201,168,106,.16);
-  pointer-events:none;
-}
-
-.hero-ornament{position:absolute;border-radius:50%;pointer-events:none}
-.hero-ornament.o1{
-  width:430px;height:430px;top:-60px;inset-inline-start:-90px;
-  border:1px dashed rgba(201,168,106,.22);
-  animation:spinSlow 110s linear infinite;
-}
-.hero-ornament.o2{
-  width:300px;height:300px;bottom:-40px;inset-inline-end:-60px;
-  border:1px solid rgba(201,168,106,.14);
-  animation:spinSlow 85s linear infinite reverse;
-}
-
-/* Prayer beads — gold, strung along the arch */
-.beads{position:absolute;top:6%;inset-inline-end:4%;display:flex;flex-direction:column;gap:.85rem;z-index:3}
-.bead{
-  width:9px;height:9px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--honey-deep));
-  box-shadow:0 2px 6px rgba(0,0,0,.35);
-  animation:breathe 5s ease-in-out infinite;
-}
-.bead:nth-child(2){animation-delay:.6s;margin-inline-start:.55rem}
-.bead:nth-child(3){animation-delay:1.2s;margin-inline-start:.9rem}
-.bead:nth-child(4){animation-delay:1.8s;margin-inline-start:.55rem}
-.bead:nth-child(5){animation-delay:2.4s}
+/* The former CSS mihrab niche (dome arch), inner hairline, orbit rings
+   and prayer beads that framed the device were removed by design owner
+   request — the photographic Cloudinary backdrop now provides the real
+   architecture; the device floats clean over it. */
 
 /* ---- The device ---- */
 .phone{
@@ -1968,8 +1925,6 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   .hero-stats{gap:1rem 0}
   .hero-stat-value{font-size:1.8rem}
   .hero-visual{min-height:480px}
-  .hero-visual::before{width:min(330px,92%)}
-  .hero-visual::after{width:min(300px,84%)}
 
   .mushaf-preview-shell{padding:1.8rem 1.1rem 3.6rem}
   .mushaf-player{inset-inline:.9rem;padding:.65rem .9rem}
