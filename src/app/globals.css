@@ -418,13 +418,19 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 }
 
 /* ---- Immersive photographic background engine ----
-   Layer 0: the mandated Cloudinary photograph (cover/center, absolute
-   → zero layout participation → CLS = 0).
+   Layer 0: the mandated Cloudinary photograph, anchored to EXACTLY ONE
+   viewport height (100dvh) at the top of the hero — never stretched
+   across the full (much taller) section, so each asset renders at its
+   native 9:16 / 16:9 proportions with only a natural cover crop.
+   The hero's solid --ink-deep underlay continues below the photo box.
    Layer 1: cinematic scrim in the project's own ink palette
-   (rgba(24,13,7,.72) → rgba(43,26,16,.65)) + a whisper of honey glow
-   so every headline, stat and the device mock stay perfectly readable. */
+   (rgba(24,13,7,.72) → rgba(43,26,16,.65)) that resolves to FULLY
+   opaque ink for the last 140px of the photo box → mathematically
+   seamless blend into the underlay (zero visible seam, CLS = 0). */
 .hero-bg{
-  position:absolute;inset:0;z-index:0;
+  position:absolute;top:0;inset-inline:0;
+  height:100vh;height:100dvh;
+  z-index:0;
   pointer-events:none;user-select:none;
 }
 .hero-bg img{
@@ -438,11 +444,17 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   to{opacity:1;transform:scale(1)}
 }
 .hero-scrim{
-  position:absolute;inset:0;z-index:1;
+  position:absolute;top:0;inset-inline:0;
+  height:100vh;height:100dvh;
+  z-index:1;
   pointer-events:none;
   background:
     radial-gradient(ellipse 52% 42% at 76% 16%,rgba(222,171,101,.10),transparent 62%),
-    linear-gradient(180deg,rgba(24,13,7,.72) 0%,rgba(43,26,16,.65) 46%,rgba(24,13,7,.8) 100%);
+    linear-gradient(180deg,
+      rgba(24,13,7,.72) 0px,
+      rgba(43,26,16,.65) 46%,
+      rgba(24,13,7,1) calc(100% - 140px),
+      rgba(24,13,7,1) 100%);
 }
 .hero::after{ /* gold hairline at the sanctuary floor */
   content:'';position:absolute;bottom:0;inset-inline:8%;height:1px;
