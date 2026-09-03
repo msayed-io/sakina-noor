@@ -1,6 +1,11 @@
-'use client'
+import type { ReactNode } from 'react'
 
-import { useEffect, useState } from 'react'
+/*
+ * الهيدر العائم الرسمي — نفس فلسفة/كبسولات تطبيق سكينة الحقيقي:
+ * كبسولة عنوان (cut-crystal-capsule) تحمل اسم سَكِينَة، وكبسولة روابط
+ * مقسّمة، وكبسولة ذهبية (cut-crystal-capsule-gold) لدعوة التحميل.
+ * لا قائمة همبرغر ولا لوحة ملء الشاشة — مطابق للتطبيق.
+ */
 
 const links = [
   { href: '#features', label: 'المميزات' },
@@ -9,88 +14,33 @@ const links = [
   { href: '#prayer', label: 'الصلاة' },
 ]
 
-export default function Header() {
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    /* Nav scrolled state — نفس المنطق الأصلي */
-    const nav = document.getElementById('nav')
-    if (!nav) return
-    let ticking = false
-
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          nav.classList.toggle('scrolled', window.scrollY > 20)
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open])
-
+function DownloadIcon(): ReactNode {
   return (
-    <nav
-      className={`nav cut-crystal-capsule${open ? ' menu-open' : ''}`}
-      id="nav"
-      aria-label="التنقل الرئيسي"
-    >
-      <a href="#" className="nav-brand">
-        <span className="nav-brand-mark">س</span>
-        <span>سَكِينَة</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+    </svg>
+  )
+}
+
+export default function Header() {
+  return (
+    <nav className="nav" aria-label="التنقل الرئيسي">
+      <a href="#" className="nav-brand cut-crystal-capsule">
+        <span className="nav-brand-name">سَكِينَة</span>
       </a>
-      <div className="nav-links">
+
+      <div className="nav-links cut-crystal-capsule">
         {links.map((link) => (
           <a key={link.href} href={link.href}>{link.label}</a>
         ))}
       </div>
-      <div className="nav-actions">
-        <a href="#download" className="nav-cta">
-          <span>حمّل التطبيق</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-        </a>
-        <button
-          type="button"
-          className="nav-menu-btn"
-          aria-expanded={open}
-          aria-controls="nav-menu"
-          aria-label={open ? 'إغلاق القائمة' : 'فتح القائمة'}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-              <path d="M6 6l12 12M18 6L6 18" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          )}
-        </button>
-      </div>
 
-      {open && (
-        <div className="nav-menu" id="nav-menu">
-          {links.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>
-          ))}
-          <a href="#download" onClick={() => setOpen(false)}>حمّل التطبيق</a>
-        </div>
-      )}
+      <div className="nav-actions">
+        <a href="#download" className="nav-cta cut-crystal-capsule-gold">
+          <span>حمّل التطبيق</span>
+          <DownloadIcon />
+        </a>
+      </div>
     </nav>
   )
 }

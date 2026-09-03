@@ -140,7 +140,7 @@ button{cursor:pointer}
   outline-offset:2px;
   border-radius:.375rem;
 }
-.nav a:focus-visible,.nav-menu a:focus-visible,.nav-menu-btn:focus-visible{
+.nav a:focus-visible{
   outline:2px solid var(--honey-deep);
   outline-offset:2px;
 }
@@ -253,10 +253,6 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   from{transform:translateX(-120%) skewX(-18deg)}
   to{transform:translateX(220%) skewX(-18deg)}
 }
-@keyframes menuIn{
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:none}
-}
 
 /* ================================================================
    CUT-CRYSTAL OPTICS — authentic Sakina glass, copied verbatim
@@ -319,126 +315,85 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
               inset 0 1px 0 0 rgba(255, 255, 255, 0.90),
               inset 0 -1px 0 0 rgba(43, 26, 16, 0.05);
 }
+/* Gold crystal capsule — official solid accent pill from the Sakina app */
+.cut-crystal-capsule-gold {
+  position: relative;
+  background: #deab65;
+  border: 1px solid rgba(43, 26, 16, 0.15);
+  box-shadow: 0 4px 12px rgba(222, 171, 101, 0.25),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  color: #2b1a10;
+  transition: all 0.25s ease;
+}
+.cut-crystal-capsule-gold:hover {
+  background: #e4b775;
+  box-shadow: 0 6px 16px rgba(222, 171, 101, 0.35),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-0.5px);
+}
+.cut-crystal-capsule-gold:active {
+  background: #d39f57;
+  transform: scale(0.97);
+}
 
 /* ================================================================
-   NAVIGATION — floating cut-crystal capsule over the ink hero
+   NAVIGATION — official Sakina floating capsules over the ink hero
+   (title capsule + segmented links capsule + gold download capsule)
    ================================================================ */
 .nav{
-  position:fixed;top:.9rem;inset-inline:1rem;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  position:fixed;top:1.5rem;inset-inline:1rem;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
   max-width:calc(var(--cm) + 3rem);
   margin:0 auto;
-  padding:.85rem clamp(1.25rem,4vw,2.5rem);
+  pointer-events:none;
+}
+.nav-brand,.nav-links,.nav-actions{position:relative;z-index:2;pointer-events:auto}
+
+/* Title capsule — the official "سَكِينَة" brand capsule */
+.nav-brand{
+  display:inline-flex;align-items:center;
+  height:2.5rem;
+  padding:0 1.4rem;
+}
+.nav-brand-name{
+  font-family:var(--fd);font-weight:900;
+  font-size:1.22rem;line-height:1;
   color:var(--ink);
-}
-/* Elevated capsule state once the reader scrolls */
-.nav.scrolled{
-  border-color:rgba(43,26,16,.15);
-  box-shadow:0 20px 42px -8px rgba(43,26,16,.22),
-              0 6px 14px -1px rgba(43,26,16,.08),
-              inset 0 1px 0 0 rgba(255,255,255,1),
-              inset 0 -1px 0 0 rgba(43,26,16,.08);
-}
-/* The capsule steps back while the full-screen ink menu is open */
-.nav.menu-open{
-  background:transparent;
-  -webkit-backdrop-filter:none;
-  backdrop-filter:none;
-  border-color:transparent;
-  box-shadow:none;
-  color:var(--cream);
+  white-space:nowrap;
 }
 
-/* keep brand + actions above the full-screen menu (same stacking context) */
-.nav-brand,.nav-actions{position:relative;z-index:2}
-
-.nav-brand{display:inline-flex;align-items:center;gap:.65rem}
-.nav-brand>span:last-child{font-weight:900;font-size:1.28rem;line-height:1}
-.nav-brand-mark{
-  display:grid;place-items:center;
-  width:2.35rem;height:2.6rem;
-  background:linear-gradient(160deg,var(--honey-light),var(--honey-deep));
-  color:var(--ink-deep);
-  border-radius:9999px 9999px .7rem .7rem; /* mihrab chip */
-  font-family:var(--fd);font-weight:900;font-size:1.05rem;
-  box-shadow:0 6px 18px -6px rgba(184,138,79,.55),inset 0 1px 0 rgba(255,255,255,.45);
-  transition:transform .5s var(--es);
+/* Segmented links capsule */
+.nav-links{
+  display:flex;align-items:center;
+  height:2.5rem;
+  padding:.25rem;
+  gap:.1rem;
 }
-.nav-brand:hover .nav-brand-mark{transform:translateY(-2px) rotate(-3deg)}
-
-.nav-links{display:flex;align-items:center;gap:2.2rem}
 .nav-links a{
-  position:relative;
-  font-size:.94rem;font-weight:700;
-  padding:.3rem 0;
-  opacity:.88;
-  transition:opacity .3s,color .3s;
+  display:inline-flex;align-items:center;
+  height:2rem;
+  padding:0 1.05rem;
+  border-radius:9999px;
+  font-size:.9rem;font-weight:700;
+  color:var(--ink-soft);
+  transition:color .3s,background .3s;
 }
-.nav-links a::after{
-  content:'';position:absolute;bottom:0;right:0;left:0;height:1.5px;
-  background:var(--honey);
-  transform:scaleX(0);transform-origin:right;
-  transition:transform .45s var(--ef);
+.nav-links a:hover{
+  color:var(--honey-deep);
+  background:rgba(184,138,79,.12);
 }
-.nav-links a:hover{opacity:1;color:var(--honey-deep)}
-.nav-links a:hover::after{transform:scaleX(1)}
 
+/* Gold download capsule */
 .nav-actions{display:flex;align-items:center;gap:.8rem}
 .nav-cta{
-  position:relative;overflow:hidden;
-  display:inline-flex;align-items:center;gap:.45rem;
-  padding:.62rem 1.25rem;
-  background:linear-gradient(160deg,var(--honey-light),var(--honey));
-  color:var(--ink-deep);
-  border-radius:var(--rp);
-  font-size:.86rem;font-weight:700;
-  box-shadow:0 8px 22px -8px rgba(184,138,79,.6),inset 0 1px 0 rgba(255,255,255,.4);
-  transition:transform .35s var(--es),box-shadow .35s var(--ef);
+  display:inline-flex;align-items:center;gap:.5rem;
+  height:2.5rem;
+  padding:0 1.4rem;
+  font-size:.88rem;font-weight:800;
 }
-.nav-cta svg{width:.95rem;height:.95rem;transition:transform .35s var(--ef)}
-.nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(184,138,79,.7),inset 0 1px 0 rgba(255,255,255,.5)}
-.nav-cta:hover svg{transform:translateX(-3px)}
-.nav-cta::before{
-  content:'';position:absolute;top:0;bottom:0;width:40%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
-  transform:translateX(-120%) skewX(-18deg);
-}
-.nav-cta:hover::before{animation:sheen .9s var(--ef)}
-
-.nav-menu-btn{
-  display:none;place-items:center;
-  width:2.6rem;height:2.6rem;
-  border:1px solid currentColor;
-  border-radius:9999px 9999px .6rem .6rem;
-  opacity:.85;
-  transition:opacity .3s,border-color .3s;
-}
-.nav-menu-btn:hover{opacity:1;border-color:var(--honey)}
-.nav-menu-btn svg{width:1.15rem;height:1.15rem}
-
-.nav-menu{
-  position:fixed;inset:0;z-index:1;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 0%,rgba(184,138,79,.14),transparent 60%),
-    var(--ink-deep);
-  padding:6rem 2rem 3rem;
-}
-.nav-menu a{
-  font-family:var(--fd);font-weight:900;
-  font-size:clamp(1.5rem,6vw,2.1rem);
-  color:var(--cream);
-  padding:.55rem 1.2rem;
-  opacity:0;
-  animation:menuIn .6s var(--ef) forwards;
-  transition:color .3s;
-}
-.nav-menu a:nth-child(1){animation-delay:.05s}
-.nav-menu a:nth-child(2){animation-delay:.12s}
-.nav-menu a:nth-child(3){animation-delay:.19s}
-.nav-menu a:nth-child(4){animation-delay:.26s}
-.nav-menu a:nth-child(5){animation-delay:.33s;color:var(--gold-light)}
-.nav-menu a:hover{color:var(--gold-light)}
+.nav-cta svg{width:.95rem;height:.95rem}
+.nav-cta:active{transform:scale(.97)}
 
 /* ================================================================
    HERO — ink sanctuary, choreographed single entrance
@@ -860,7 +815,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 .pillar-icon{
   display:grid;place-items:center;
   width:2.9rem;height:3.3rem;
-  border-radius:9999px 9999px .8rem .8rem; /* mihrab medallion */
+  border-radius:.85rem;
   background:var(--paper);
   border:1px solid rgba(184,138,79,.35);
   color:var(--honey-deep);
@@ -1007,7 +962,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 .bento-icon{
   display:grid;place-items:center;flex:none;
   width:2.7rem;height:2.7rem;
-  border-radius:9999px 9999px .75rem .75rem; /* mihrab chip */
+  border-radius:.85rem;
   background:var(--cream-light);
   border:1px solid rgba(184,138,79,.3);
   color:var(--honey-deep);
@@ -1286,68 +1241,51 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   margin:0 auto;
   padding:0 var(--cp);
   display:grid;
-  grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:1.1rem;
   align-items:stretch;
 }
 
-/* Surface comes from .cut-crystal-panel (authentic app glass);
-   this class keeps only the landing's mihrab-niche geometry. */
+/* Azkar cards share the bento card philosophy: the surface comes from
+   .cut-crystal-panel (authentic app glass, like the reciter cards) with
+   uniform, calm rounded corners — no mihrab-niche arch. */
 .azkar-card{
-  min-height:190px;
-  padding:2.1rem 1.5rem 1.5rem;
-  display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;
+  min-height:172px;
+  padding:1.7rem;
+  display:flex;flex-direction:column;align-items:flex-start;
+  gap:.7rem;
   text-align:right;
-  border-radius:9999px 9999px 26px 26px; /* the niche */
+  border-radius:26px;
 }
-.azkar-card::before{ /* inner arch hairline — mihrab depth */
-  content:'';
-  position:absolute;inset:7px;
-  border-radius:9999px 9999px 20px 20px;
-  border:1px solid rgba(184,138,79,.22);
-  pointer-events:none;
-  transition:border-color .45s;
-}
-.azkar-card:hover{transform:translateY(-7px)}
-.azkar-card:hover::before{border-color:rgba(184,138,79,.5)}
+.azkar-card:hover{transform:translateY(-6px)}
 
-/* desktop niche spans (span-based on the 12-col grid) */
-@media (min-width:901px){
-  .azkar-card:nth-child(1){grid-column:span 6;min-height:236px}
-  .azkar-card:nth-child(2){grid-column:span 6;min-height:236px}
-  .azkar-card:nth-child(n+3){grid-column:span 3;min-height:190px}
-  /* closing pair — wide horizontal niches */
-  .azkar-card:nth-child(7),.azkar-card:nth-child(8){
-    grid-column:span 6;min-height:150px;
-    flex-direction:row;align-items:center;justify-content:space-between;
-    gap:1.2rem;padding:1.6rem 2.2rem 1.5rem;
-  }
-  .azkar-card:nth-child(7) .azkar-name,.azkar-card:nth-child(8) .azkar-name{margin-top:0;padding-top:0}
-  .azkar-card:nth-child(7) .azkar-count,.azkar-card:nth-child(8) .azkar-count{margin-top:.25rem}
-  .azkar-card:nth-child(7) .azkar-icon,.azkar-card:nth-child(8) .azkar-icon{width:3.3rem;height:3.7rem;flex:none}
-}
-
+/* Icon chip — same square medallion language as the bento cards */
 .azkar-icon{
-  display:grid;place-items:center;
-  width:3.1rem;height:3.5rem;
-  border-radius:9999px 9999px .85rem .85rem; /* mihrab medallion */
+  display:grid;place-items:center;flex:none;
+  width:2.7rem;height:2.7rem;
+  border-radius:.85rem;
   background:var(--cream-light);
-  border:1px solid rgba(184,138,79,.35);
-  color:var(--honey);
-  transition:transform .5s var(--es),background .4s,color .4s;
+  border:1px solid rgba(184,138,79,.3);
+  color:var(--honey-deep);
+  transition:background .4s,color .4s,transform .5s var(--es);
 }
-.azkar-card:hover .azkar-icon{transform:translateY(-3px) scale(1.04)}
+.azkar-icon svg{width:1.2rem;height:1.2rem}
+.azkar-card:hover .azkar-icon{
+  background:linear-gradient(160deg,var(--honey-light),var(--honey));
+  color:var(--ink-deep);
+  transform:translateY(-2px);
+}
 
 .azkar-name{
-  margin-top:auto;padding-top:1.2rem;
+  margin-top:.35rem;
   font-weight:900;
-  font-size:1.4rem;
-  line-height:1.2;
+  font-size:1.12rem;
+  line-height:1.3;
   color:var(--ink);
 }
 .azkar-count{
-  margin-top:.3rem;
-  font-size:.78rem;font-weight:700;
+  font-size:.92rem;font-weight:700;
+  line-height:1.4;
   color:var(--ink-muted);
 }
 
@@ -1517,7 +1455,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 .prayer-schedule-icon{
   display:grid;place-items:center;
   width:1.75rem;height:1.75rem;flex:none;
-  border-radius:9999px 9999px .45rem .45rem;
+  border-radius:.6rem;
   color:var(--honey-deep);
   background:var(--cream-light);
   border:1px solid rgba(184,138,79,.3);
@@ -1745,7 +1683,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   width:2.5rem;height:2.8rem;
   background:linear-gradient(160deg,var(--honey-light),var(--honey-deep));
   color:var(--ink-deep);
-  border-radius:9999px 9999px .75rem .75rem;
+  border-radius:.85rem;
   font-family:var(--fd);font-weight:900;font-size:1.1rem;
   box-shadow:0 8px 22px -8px rgba(184,138,79,.6),inset 0 1px 0 rgba(255,255,255,.4);
 }
@@ -1947,9 +1885,6 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 /* ---- Nav collapse ---- */
 @media(max-width:900px){
   .nav-links{display:none}
-  .nav-menu-btn{display:grid}
-  .nav-cta span{display:none}
-  .nav-cta{padding:.62rem .9rem}
 
   .manifesto{grid-template-columns:1fr;gap:3.5rem}
   .manifesto > .manifesto-eyebrow,
@@ -1972,8 +1907,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   .quran-visual{order:2}
 
   .azkar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .azkar-card{min-height:200px}
-  .azkar-card:nth-child(1),.azkar-card:nth-child(2){grid-column:span 2}
+  .azkar-card{min-height:160px}
 
   .prayer-inner{grid-template-columns:1fr;gap:3.2rem;max-width:640px}
   .prayer-content{max-width:none;text-align:center}
@@ -1991,6 +1925,11 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 }
 
 @media(max-width:640px){
+  .nav{top:1rem;gap:.6rem;inset-inline:.75rem}
+  .nav-brand{padding:0 1.05rem;height:2.35rem}
+  .nav-brand-name{font-size:1.08rem}
+  .nav-cta{height:2.35rem;padding:0 1.1rem;font-size:.82rem}
+
   .hero-stats{gap:1rem 0}
   .hero-stat-value{font-size:1.8rem}
   .hero-visual{min-height:480px}
@@ -2016,11 +1955,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
     padding-inline:1.15rem;
   }
   .azkar-grid{grid-template-columns:1fr;gap:.9rem}
-  .azkar-card,.azkar-card:nth-child(1),.azkar-card:nth-child(2),.azkar-card:nth-child(n+3){
-    grid-column:1;min-height:158px;padding:1.8rem 1.3rem 1.3rem;
-  }
-  .azkar-name{font-size:1.25rem;padding-top:.9rem}
-  .azkar-icon{width:2.8rem;height:3.1rem}
+  .azkar-card{min-height:150px}
 
   .prayer-dashboard{padding:.9rem;border-radius:24px}
   .prayer-current-card{min-height:160px;padding:1.2rem 1rem 1rem;gap:.6rem}
@@ -2065,5 +2000,4 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   }
   .reveal,.reveal-stagger > *{opacity:1;transform:none;filter:none}
   .hero-content > *,.hero-visual{opacity:1;animation:none}
-  .nav-menu a{opacity:1;animation:none}
 }
