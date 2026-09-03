@@ -25,12 +25,14 @@
   --gold-deep:#9a6f3a;
   --paper:#fff9f1;
   --paper-warm:#f7f2ea;
-  --glass-bg:rgba(255,249,241,.55);
-  --glass-bg-dark:rgba(255,253,248,.1);
-  --glass-border:rgba(255,255,255,.6);
-  --glass-border-dark:rgba(255,255,255,.15);
-  --glass-shadow:0 8px 32px rgba(43,26,16,.08);
-  --glass-shadow-lg:0 24px 64px rgba(43,26,16,.16);
+  /* Cut-Crystal glass tokens — authentic values from the Sakina app
+     (source of truth: sakina-pro src/index.css) */
+  --glass-blur: 26px;
+  --glass-saturate: 210%;
+  --glass-border: rgba(43, 26, 16, 0.09);
+  --glass-ambient: 0 16px 36px -12px rgba(43, 26, 16, 0.14), 0 4px 10px -2px rgba(43, 26, 16, 0.06);
+  --glass-lensing: inset 0 1px 0 0 rgba(255, 255, 255, 0.90),
+                   inset 0 -1px 0 0 rgba(43, 26, 16, 0.05);
   --sage:#80a390;
   --sage-deep:#5a7d6a;
   --dusk:#8ca1b3;
@@ -257,25 +259,94 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 }
 
 /* ================================================================
-   NAVIGATION — transparent over the ink hero, cream glass on scroll
+   CUT-CRYSTAL OPTICS — authentic Sakina glass, copied verbatim
+   from the application's source of truth (src/index.css).
+   ================================================================ */
+.cut-crystal-panel {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(253, 252, 251, 0.75) 0%,
+    rgba(244, 240, 234, 0.60) 100%
+  );
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(99%) brightness(102%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(99%) brightness(102%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-ambient), var(--glass-lensing);
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.cut-crystal-panel:hover {
+  border-color: rgba(43, 26, 16, 0.14);
+  box-shadow: 0 20px 42px -10px rgba(43, 26, 16, 0.18),
+              0 6px 14px -2px rgba(43, 26, 16, 0.08),
+              inset 0 1px 0 0 rgba(255, 255, 255, 1.0),
+              inset 0 -1px 0 0 rgba(43, 26, 16, 0.08);
+}
+.cut-crystal-panel:active {
+  box-shadow: 0 10px 24px -12px rgba(43, 26, 16, 0.12),
+              0 2px 6px -2px rgba(43, 26, 16, 0.04),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+              inset 0 -1px 0 0 rgba(43, 26, 16, 0.06);
+}
+
+.cut-crystal-capsule {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(253, 252, 251, 0.82) 0%,
+    rgba(244, 240, 234, 0.68) 100%
+  );
+  -webkit-backdrop-filter: blur(30px) saturate(220%) contrast(99%) brightness(103%);
+  backdrop-filter: blur(30px) saturate(220%) contrast(99%) brightness(103%);
+  border: 1px solid rgba(43, 26, 16, 0.10);
+  box-shadow: 0 16px 36px -10px rgba(43, 26, 16, 0.18),
+              0 4px 10px -2px rgba(43, 26, 16, 0.06),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+              inset 0 -1px 0 0 rgba(43, 26, 16, 0.05);
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.cut-crystal-capsule:hover {
+  border-color: rgba(43, 26, 16, 0.15);
+  box-shadow: 0 20px 42px -8px rgba(43, 26, 16, 0.22),
+              0 6px 14px -1px rgba(43, 26, 16, 0.08),
+              inset 0 1px 0 0 rgba(255, 255, 255, 1.0),
+              inset 0 -1px 0 0 rgba(43, 26, 16, 0.08);
+}
+.cut-crystal-capsule:active {
+  box-shadow: 0 8px 24px -12px rgba(43, 26, 16, 0.14),
+              0 2px 6px -2px rgba(43, 26, 16, 0.04),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.90),
+              inset 0 -1px 0 0 rgba(43, 26, 16, 0.05);
+}
+
+/* ================================================================
+   NAVIGATION — floating cut-crystal capsule over the ink hero
    ================================================================ */
 .nav{
-  position:fixed;top:0;inset-inline:0;z-index:100;
+  position:fixed;top:.9rem;inset-inline:1rem;z-index:100;
   display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
   max-width:calc(var(--cm) + 3rem);
   margin:0 auto;
-  padding:1.15rem clamp(1.25rem,4vw,2.5rem);
-  color:var(--cream);
-  transition:background .5s var(--ef),color .5s var(--ef),box-shadow .5s var(--ef),border-color .5s var(--ef);
-  border-bottom:1px solid transparent;
-}
-.nav.scrolled{
-  background:rgba(236,231,222,.82);
-  -webkit-backdrop-filter:blur(18px) saturate(160%);
-  backdrop-filter:blur(18px) saturate(160%);
+  padding:.85rem clamp(1.25rem,4vw,2.5rem);
   color:var(--ink);
-  border-bottom:1px solid rgba(201,168,106,.28);
-  box-shadow:0 10px 40px -18px rgba(43,26,16,.35);
+}
+/* Elevated capsule state once the reader scrolls */
+.nav.scrolled{
+  border-color:rgba(43,26,16,.15);
+  box-shadow:0 20px 42px -8px rgba(43,26,16,.22),
+              0 6px 14px -1px rgba(43,26,16,.08),
+              inset 0 1px 0 0 rgba(255,255,255,1),
+              inset 0 -1px 0 0 rgba(43,26,16,.08);
+}
+/* The capsule steps back while the full-screen ink menu is open */
+.nav.menu-open{
+  background:transparent;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+  border-color:transparent;
+  box-shadow:none;
+  color:var(--cream);
 }
 
 /* keep brand + actions above the full-screen menu (same stacking context) */
@@ -309,9 +380,8 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   transform:scaleX(0);transform-origin:right;
   transition:transform .45s var(--ef);
 }
-.nav-links a:hover{opacity:1}
+.nav-links a:hover{opacity:1;color:var(--honey-deep)}
 .nav-links a:hover::after{transform:scaleX(1)}
-.nav.scrolled .nav-links a:hover{color:var(--honey-deep)}
 
 .nav-actions{display:flex;align-items:center;gap:.8rem}
 .nav-cta{
@@ -1221,17 +1291,14 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   align-items:stretch;
 }
 
+/* Surface comes from .cut-crystal-panel (authentic app glass);
+   this class keeps only the landing's mihrab-niche geometry. */
 .azkar-card{
-  position:relative;
   min-height:190px;
   padding:2.1rem 1.5rem 1.5rem;
   display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;
   text-align:right;
-  background:var(--paper);
-  border:1px solid rgba(43,26,16,.09);
   border-radius:9999px 9999px 26px 26px; /* the niche */
-  box-shadow:0 12px 30px -18px rgba(43,26,16,.3);
-  transition:transform .55s var(--ef),border-color .45s,box-shadow .55s var(--ef);
 }
 .azkar-card::before{ /* inner arch hairline — mihrab depth */
   content:'';
@@ -1241,11 +1308,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   pointer-events:none;
   transition:border-color .45s;
 }
-.azkar-card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(184,138,79,.5);
-  box-shadow:0 28px 55px -20px rgba(43,26,16,.4);
-}
+.azkar-card:hover{transform:translateY(-7px)}
 .azkar-card:hover::before{border-color:rgba(184,138,79,.5)}
 
 /* desktop niche spans (span-based on the 12-col grid) */
@@ -1264,50 +1327,15 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   .azkar-card:nth-child(7) .azkar-icon,.azkar-card:nth-child(8) .azkar-icon{width:3.3rem;height:3.7rem;flex:none}
 }
 
-/* Niche I — the dark sanctuary */
-.azkar-card:nth-child(1){
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(222,171,101,.2),transparent 62%),
-    linear-gradient(170deg,var(--ink-soft),var(--ink-deep));
-  border-color:rgba(201,168,106,.4);
-  color:var(--cream);
-  box-shadow:0 20px 45px -18px rgba(24,13,7,.6);
-}
-.azkar-card:nth-child(1)::before{border-color:rgba(201,168,106,.3)}
-.azkar-card:nth-child(1) .azkar-name{color:var(--cream)}
-.azkar-card:nth-child(1) .azkar-count{color:var(--gold-light)}
-.azkar-card:nth-child(1) .azkar-icon{
-  background:rgba(222,171,101,.14);
-  border-color:rgba(222,171,101,.45);
-  color:var(--gold-light);
-}
-
-/* Niche II — solid honey */
-.azkar-card:nth-child(2){
-  background:linear-gradient(160deg,var(--honey-light),var(--honey) 80%);
-  border-color:rgba(154,111,58,.55);
-  color:var(--ink);
-  box-shadow:0 20px 45px -16px rgba(184,138,79,.55),inset 0 1px 0 rgba(255,255,255,.4);
-}
-.azkar-card:nth-child(2)::before{border-color:rgba(24,13,7,.25)}
-.azkar-card:nth-child(2) .azkar-name{color:var(--ink-deep)}
-.azkar-card:nth-child(2) .azkar-count{color:rgba(24,13,7,.68)}
-.azkar-card:nth-child(2) .azkar-icon{
-  background:rgba(24,13,7,.1);
-  border-color:rgba(24,13,7,.3);
-  color:var(--ink-deep);
-}
-
 .azkar-icon{
   display:grid;place-items:center;
   width:3.1rem;height:3.5rem;
   border-radius:9999px 9999px .85rem .85rem; /* mihrab medallion */
   background:var(--cream-light);
   border:1px solid rgba(184,138,79,.35);
-  color:var(--honey-deep);
+  color:var(--honey);
   transition:transform .5s var(--es),background .4s,color .4s;
 }
-.azkar-icon svg{width:1.3rem;height:1.3rem;stroke-width:1.4}
 .azkar-card:hover .azkar-icon{transform:translateY(-3px) scale(1.04)}
 
 .azkar-name{

@@ -10,6 +10,7 @@
     "build": "next build && if [ -d .next/standalone ]; then cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/; fi"
   },
   "dependencies": {
+    "lucide-react": "^1.39.0",
     "next": "^16.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
