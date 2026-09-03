@@ -408,13 +408,26 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   max-width:none;
   margin:0;
   padding:9rem clamp(1.25rem,5vw,calc((100vw - var(--cm))/2 + 1.5rem)) 5.5rem;
-  background:
-    radial-gradient(ellipse 55% 45% at 78% 18%,rgba(184,138,79,.2),transparent 62%),
-    radial-gradient(ellipse 45% 40% at 12% 85%,rgba(128,163,144,.08),transparent 60%),
-    linear-gradient(165deg,var(--ink-soft) 0%,var(--ink-deep) 58%,#120a05 100%);
+  /* Cloudinary immersive backgrounds — responsive switch */
+  background-image:
+    linear-gradient(to bottom, rgba(24,13,7,0.72), rgba(43,26,16,0.65)),
+    url("https://res.cloudinary.com/dubcctda0/image/upload/v1788448076/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A3_%D9%A1%D7%A4%D9%A9%D9%A5%D9%A8%D9%A2%D6%A9_emndof.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color:var(--cream);
   overflow:hidden;
   z-index:2;
+}
+
+/* Mobile portrait background (9:16) */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    background-image:
+      linear-gradient(to bottom, rgba(24,13,7,0.72), rgba(43,26,16,0.65)),
+      url("https://res.cloudinary.com/dubcctda0/image/upload/v1788448109/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A3_%D9%A1%D9%A8%D9%A0%D9%A1%D9%A5%D9%A6%D9%A7%D9%A0_gyl6yw.jpg");
+  }
 }
 .hero::before{ /* girih lattice, whisper-quiet */
   content:'';position:absolute;inset:0;

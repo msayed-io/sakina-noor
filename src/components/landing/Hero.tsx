@@ -31,6 +31,20 @@ export default function Hero() {
 
   return (
     <section className="hero">
+      {/* Preload hero backgrounds for instant LCP */}
+      <link
+        rel="preload"
+        as="image"
+        href="https://res.cloudinary.com/dubcctda0/image/upload/v1788448109/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A3_%D9%A1%D9%A8%D9%A0%D9%A1%D9%A5%D9%A6%D9%A7%D9%A0_gyl6yw.jpg"
+        media="(max-width: 768px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href="https://res.cloudinary.com/dubcctda0/image/upload/v1788448076/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A3_%D9%A1%D7%A4%D9%A9%D9%A5%D9%A8%D9%A2%D6%A9_emndof.jpg"
+        media="(min-width: 769px)"
+      />
+
       <div className="hero-content">
         <div className="hero-eyebrow">رفيقك الروحي اليومي</div>
         <h1 className="hero-title">
