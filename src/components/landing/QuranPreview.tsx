@@ -141,7 +141,7 @@ export default function QuranPreview() {
       playButton.innerHTML = pauseIcon
     }
 
-    const wordHandlers: Array<[Element, EventListener]> = []
+    const wordHandlers: Array<[Element, EventListener, EventListener]> = []
     words.forEach((word) => {
       const handler = () => {
         stopPlayback()
@@ -149,8 +149,17 @@ export default function QuranPreview() {
         isPlaying = true
         playButton.innerHTML = pauseIcon
       }
+      /* إمكانية الوصول: Enter أو مسافة على الكلمة يشغّل آيتها */
+      const keyHandler: EventListener = (e) => {
+        const ke = e as KeyboardEvent
+        if (ke.key === 'Enter' || ke.key === ' ') {
+          ke.preventDefault()
+          handler()
+        }
+      }
       word.addEventListener('click', handler)
-      wordHandlers.push([word, handler])
+      word.addEventListener('keydown', keyHandler)
+      wordHandlers.push([word, handler, keyHandler])
     })
 
     playButton.addEventListener('click', onPlayClick)
@@ -162,7 +171,10 @@ export default function QuranPreview() {
       playButton.removeEventListener('click', onPlayClick)
       audio.removeEventListener('ended', onEnded)
       audio.removeEventListener('timeupdate', onTimeUpdate)
-      wordHandlers.forEach(([word, handler]) => word.removeEventListener('click', handler))
+      wordHandlers.forEach(([word, handler, keyHandler]) => {
+        word.removeEventListener('click', handler)
+        word.removeEventListener('keydown', keyHandler)
+      })
     }
   }, [])
 
@@ -188,14 +200,16 @@ export default function QuranPreview() {
                 {pageLines.map((line) => line.type === 'surah-header' ? (
                   <div key={line.line} className="surah-header-line">
                     <div className="surah-frame" aria-label={line.ariaLabel}>
-                      <img className="surah-frame__art" src="/images/quran/surah-header-frame.webp" width="2400" height="775" alt="" aria-hidden="true" loading="eager" decoding="sync" fetchPriority="high" draggable={false} />
+                      <img className="surah-frame__art" src="/images/quran/surah-header-frame.webp" width="1200" height="388" alt="" aria-hidden="true" loading="eager" decoding="sync" fetchPriority="high" draggable={false} />
                       <span className="surah-frame__title" dir="rtl">{line.text}</span>
                     </div>
                   </div>
                 ) : (
                   <div key={line.line} className="qcf-line qcf-centered" aria-label={line.ariaLabel}>
                     {line.words.map(([word, glyph, ayah], index) => (
-                      <span key={`${line.line}-${index}`} className={`qcf-preview-word qcf-word ${index === line.words.length - 1 && (word.length === 1 || /[٠-٩]$/.test(word)) ? 'qcf-end-mark' : ''}`} data-ayah={ayah} aria-hidden="true">{glyph}</span>
+                      <span key={`${line.line}-${index}`} className={`qcf-preview-word qcf-word ${index === line.words.length - 1 && (word.length === 1 || /[٠-٩]$/.test(word)) ? 'qcf-end-mark' : ''}`} data-ayah={ayah} role="button" tabIndex={0} aria-label={`تشغيل الآية ${ayah}`}>
+                        <span aria-hidden="true">{glyph}</span>
+                      </span>
                     ))}
                   </div>
                 ))}
