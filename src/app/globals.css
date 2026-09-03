@@ -164,65 +164,22 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 }
 
 /* Texture utilities */
-@supports (content-visibility:auto){
-  main > section:not(.hero){
-    content-visibility:auto;
-    contain-intrinsic-size:800px;
-  }
-}
-
-/* ================================================================
-   SHARED ORNAMENTS
-   ================================================================ */
-
-/* Khatam diamond — the brand's signature mark, pure CSS */
-.khatam,.hero-eyebrow::before,.manifesto-eyebrow::before,.features-eyebrow::before,
-.quran-eyebrow::before,.azkar-eyebrow::before,.prayer-eyebrow::before{
-  content:'';
-  width:9px;height:9px;flex:none;
-  background:linear-gradient(135deg,var(--honey-light),var(--honey-deep));
-  transform:rotate(45deg);
-  box-shadow:0 0 0 1px rgba(255,249,241,.5) inset;
-}
-
-/* Section eyebrow — editorial kicker with hairline tail */
-.hero-eyebrow,.manifesto-eyebrow,.features-eyebrow,.quran-eyebrow,
-.azkar-eyebrow,.prayer-eyebrow{
-  display:inline-flex;align-items:center;gap:.7rem;
-  font-size:.82rem;font-weight:700;color:var(--honey-deep);
-}
-.hero-eyebrow::after,.manifesto-eyebrow::after,.features-eyebrow::after,
-.quran-eyebrow::after,.azkar-eyebrow::after,.prayer-eyebrow::after{
-  content:'';width:3.5rem;height:1px;flex:none;
-  background:linear-gradient(90deg,var(--honey),transparent);
-}
-
-/* Section titles — consistent editorial scale */
-.manifesto-title,.features-title,.quran-title,.azkar-title,.prayer-title,.stats-title{
-  font-weight:900;
-  line-height:1.16;
-  letter-spacing:0;
-}
-.manifesto-title .accent,.features-title .accent,.quran-title .accent,
-.azkar-title .accent,.prayer-title .accent,.stats-title .accent,.hero-title .accent{
-  color:var(--honey);
-}
 
 /* ================================================================
    REVEAL SYSTEM (driven by ScrollEffects)
    ================================================================ */
 .reveal{
-  opacity:0;
-  transform:translateY(30px);
-  filter:blur(5px);
-  transition:opacity 1s var(--ef),transform 1s var(--ef),filter 1s var(--ef);
+  opacity:1 !important;
+  transform:none !important;
+  filter:none !important;
+  visibility:visible !important;
 }
 .reveal.visible{opacity:1;transform:none;filter:none}
 
 .reveal-stagger > *{
-  opacity:0;
-  transform:translateY(26px);
-  transition:opacity .9s var(--ef),transform .9s var(--ef);
+  opacity:1 !important;
+  transform:none !important;
+  visibility:visible !important;
 }
 .reveal-stagger.visible > *{opacity:1;transform:none}
 .reveal-stagger.visible > *:nth-child(1){transition-delay:0ms}
@@ -427,13 +384,8 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 }
 
 /* Entrance choreography — one coordinated moment, staggered by role */
-.hero-content > *{opacity:0;animation:riseIn 1.05s var(--ef) forwards}
-.hero-content > *:nth-child(1){animation-delay:.08s}
-.hero-content > *:nth-child(2){animation-delay:.2s}
-.hero-content > *:nth-child(3){animation-delay:.34s}
-.hero-content > *:nth-child(4){animation-delay:.48s}
-.hero-content > *:nth-child(5){animation-delay:.62s}
-.hero-visual{opacity:0;animation:riseIn 1.25s var(--ef) .5s forwards}
+.hero-content > *{opacity:1 !important;}
+.hero-visual{opacity:1 !important;}
 
 .hero-content{position:relative;z-index:2}
 
