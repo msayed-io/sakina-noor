@@ -4,25 +4,10 @@ import { useEffect } from 'react'
 
 export default function ScrollEffects() {
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const revealElements = document.querySelectorAll('.reveal, .reveal-stagger')
-
-    if (prefersReducedMotion) {
-      revealElements.forEach((element) => element.classList.add('visible'))
-    } else {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' })
-
-      revealElements.forEach((element) => observer.observe(element))
-
-      return () => observer.disconnect()
-    }
+    revealElements.forEach((element) => {
+      element.classList.add('visible')
+    })
   }, [])
 
   useEffect(() => {
