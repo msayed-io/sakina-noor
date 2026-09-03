@@ -13,9 +13,11 @@ export default function Manifesto() {
       <div className="manifesto-pillars reveal-stagger">
         <div className="pillar">
           <div className="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
-              <path d="M12 6v6l4 2"/>
+            {/* Mihrab arch + clock hands — custom Sakina icon set */}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 21V11a7 7 0 0 1 14 0v10" />
+              <path d="M3 21h18" />
+              <path d="M12 8.5V12l2.6 1.6" />
             </svg>
           </div>
           <h3 className="pillar-title">دقة المواقيت</h3>
@@ -24,9 +26,10 @@ export default function Manifesto() {
 
         <div className="pillar">
           <div className="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
-              <circle cx="12" cy="12" r="3"/>
+            {/* Open mushaf — custom */}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 7.5C10.2 6.2 7.4 5.6 4 6.1v12.2c3.4-.5 6.2.1 8 1.4 1.8-1.3 4.6-1.9 8-1.4V6.1c-3.4-.5-6.2.1-8 1.4z" />
+              <path d="M12 7.5v12.2" />
             </svg>
           </div>
           <h3 className="pillar-title">خشوع القرآن</h3>
@@ -35,9 +38,11 @@ export default function Manifesto() {
 
         <div className="pillar">
           <div className="pillar-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <path d="M9 12l2 2 4-4"/>
+            {/* Tasbih beads — custom */}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="12" cy="10.5" r="6.8" strokeDasharray="0.5 3.2" />
+              <path d="M12 17.3v2.2" />
+              <circle cx="12" cy="21" r="1.1" fill="currentColor" stroke="none" />
             </svg>
           </div>
           <h3 className="pillar-title">طمأنينة الأذكار</h3>

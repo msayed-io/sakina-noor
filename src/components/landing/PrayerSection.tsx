@@ -7,15 +7,15 @@ const prayers = [
 
 function PrayerIcon({ type }: { type: string }) {
   if (type === 'moon') {
-    return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M20.3 15.5A8.5 8.5 0 0 1 8.5 3.7 8.5 8.5 0 1 0 20.3 15.5Z" /></svg>
+    return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.4 14.6A8.6 8.6 0 1 1 9.9 3.4a7 7 0 0 0 10.5 11.2z" /></svg>
   }
   if (type === 'sunrise') {
-    return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M4 18h16M6 14a6 6 0 0 1 12 0M12 3v3m-6.4.6 2.1 2.1m10.6-2.1-2.1 2.1" /></svg>
+    return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 18.5h17M7.8 18.5a4.2 4.2 0 0 1 8.4 0M12 6v2.4M5.9 9.6l1.5 1.5M18.1 9.6l-1.5 1.5" /></svg>
   }
   if (type === 'sun') {
-    return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3.5" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4" /></svg>
+    return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.6" /><path d="M12 2.8v2.4m0 13.6v2.4M2.8 12h2.4m13.6 0h2.4M5.5 5.5l1.7 1.7m9.6 9.6 1.7 1.7m0-13-1.7 1.7M7.2 16.8l-1.7 1.7" /></svg>
   }
-  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M12 3a9 9 0 0 0 0 18 9 9 0 0 0 0-18Z" /><path d="M3 12h18M12 3c2.2 2.5 3.2 5.5 3.2 9S14.2 18.5 12 21c-2.2-2.5-3.2-5.5-3.2-9S9.8 5.5 12 3Z" /></svg>
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19.4 13.6A7.6 7.6 0 1 1 10.1 3.6a6.2 6.2 0 0 0 9.3 10z" /><path d="M17.6 4.4l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z" /></svg>
 }
 
 export default function PrayerSection() {
@@ -36,13 +36,13 @@ export default function PrayerSection() {
         </div>
 
         <div className="prayer-visual reveal">
-          <div className="prayer-dashboard cut-crystal-panel" aria-label="لوحة مواقيت الصلاة">
+          <div className="prayer-dashboard" aria-label="لوحة مواقيت الصلاة">
             <div className="prayer-dashboard-head">
               <div><span className="prayer-dashboard-kicker">اليوم</span><strong>الأحد، 21 يونيو</strong></div>
               <div className="prayer-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>القاهرة</div>
             </div>
 
-            <div className="prayer-current-card cut-crystal-satin">
+            <div className="prayer-current-card">
               <div className="prayer-current-copy"><span>الصلاة الحالية</span><strong>العصر</strong><small>متبقي على المغرب · 2:34</small></div>
               <div className="prayer-ring-wrap">
                 <div className="prayer-ring-outer" aria-hidden="true" />

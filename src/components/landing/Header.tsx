@@ -42,7 +42,7 @@ export default function Header() {
   }, [open])
 
   return (
-    <nav className="nav cut-crystal-panel" id="nav" aria-label="التنقل الرئيسي">
+    <nav className="nav" id="nav" aria-label="التنقل الرئيسي">
       <a href="#" className="nav-brand">
         <span className="nav-brand-mark">س</span>
         <span>سَكِينَة</span>
