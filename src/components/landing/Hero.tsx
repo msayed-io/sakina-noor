@@ -2,6 +2,20 @@
 
 import { useEffect } from 'react'
 
+/* ------------------------------------------------------------------
+   Immersive hero background — mandated Cloudinary assets (fixed URLs).
+   Mobile: 9:16 portrait · Desktop: 16:9 widescreen.
+   The <picture> media-query switch downloads ONLY the matching asset,
+   so a device never fetches both versions (zero wasted bytes).
+   A plain <img> is deliberate here: next/image cannot art-direct two
+   distinct remote assets via media queries, and the exact URLs must
+   be preserved verbatim (no CDN transformation allowed).
+------------------------------------------------------------------- */
+const HERO_BG_MOBILE =
+  'https://res.cloudinary.com/dubcctda0/image/upload/v1788448109/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A3_%D9%A1%D9%A8%D9%A0%D9%A1%D9%A5%D9%A6%D9%A9%D9%A7%D9%A0_gyl6yw.jpg'
+const HERO_BG_DESKTOP =
+  'https://res.cloudinary.com/dubcctda0/image/upload/v1788448076/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A3_%D9%A1%D9%A7%D9%A4%D9%A9%D9%A5%D9%A8%D9%A2%D9%A6%D9%A9_emndof.jpg'
+
 export default function Hero() {
   useEffect(() => {
     /* Phone parallax — منطق أصلي حرفيًا */
@@ -31,6 +45,21 @@ export default function Hero() {
 
   return (
     <section className="hero">
+      {/* Immersive photographic background — smart mobile/desktop switch */}
+      <picture className="hero-bg" aria-hidden="true">
+        <source media="(max-width: 768px)" srcSet={HERO_BG_MOBILE} />
+        <source media="(min-width: 769px)" srcSet={HERO_BG_DESKTOP} />
+        <img
+          src={HERO_BG_DESKTOP}
+          alt=""
+          fetchPriority="high"
+          decoding="async"
+          draggable={false}
+        />
+      </picture>
+      {/* Cinematic scrim — readability shield floating above the photograph */}
+      <div className="hero-scrim" aria-hidden="true"></div>
+
       <div className="hero-content">
         <div className="hero-eyebrow">رفيقك الروحي اليومي</div>
         <h1 className="hero-title">

@@ -408,18 +408,41 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   max-width:none;
   margin:0;
   padding:9rem clamp(1.25rem,5vw,calc((100vw - var(--cm))/2 + 1.5rem)) 5.5rem;
-  background:
-    radial-gradient(ellipse 55% 45% at 78% 18%,rgba(184,138,79,.2),transparent 62%),
-    radial-gradient(ellipse 45% 40% at 12% 85%,rgba(128,163,144,.08),transparent 60%),
-    linear-gradient(165deg,var(--ink-soft) 0%,var(--ink-deep) 58%,#120a05 100%);
+  /* Solid ink underlay only — painted instantly beneath the photograph
+     so the frame is never white while the JPEG streams in (anti-FOUC).
+     All previous flat/gradient hero backgrounds removed by design. */
+  background:var(--ink-deep);
   color:var(--cream);
   overflow:hidden;
   z-index:2;
 }
-.hero::before{ /* girih lattice, whisper-quiet */
-  content:'';position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Cg fill='none' stroke='%23deab65' stroke-width='1'%3E%3Cpath d='M44 0v88M0 44h88M0 0l88 88M88 0L0 88'/%3E%3Crect x='22' y='22' width='44' height='44'/%3E%3Crect x='22' y='22' width='44' height='44' transform='rotate(45 44 44)'/%3E%3C/g%3E%3C/svg%3E");
-  opacity:.05;pointer-events:none;
+
+/* ---- Immersive photographic background engine ----
+   Layer 0: the mandated Cloudinary photograph (cover/center, absolute
+   → zero layout participation → CLS = 0).
+   Layer 1: cinematic scrim in the project's own ink palette
+   (rgba(24,13,7,.72) → rgba(43,26,16,.65)) + a whisper of honey glow
+   so every headline, stat and the device mock stay perfectly readable. */
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  pointer-events:none;user-select:none;
+}
+.hero-bg img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  display:block;
+  animation:heroBgIn 1.15s var(--ef) both;
+}
+@keyframes heroBgIn{
+  from{opacity:0;transform:scale(1.045)}
+  to{opacity:1;transform:scale(1)}
+}
+.hero-scrim{
+  position:absolute;inset:0;z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 52% 42% at 76% 16%,rgba(222,171,101,.10),transparent 62%),
+    linear-gradient(180deg,rgba(24,13,7,.72) 0%,rgba(43,26,16,.65) 46%,rgba(24,13,7,.8) 100%);
 }
 .hero::after{ /* gold hairline at the sanctuary floor */
   content:'';position:absolute;bottom:0;inset-inline:8%;height:1px;
@@ -1999,4 +2022,5 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   }
   .reveal,.reveal-stagger > *{opacity:1;transform:none;filter:none}
   .hero-content > *,.hero-visual{opacity:1;animation:none}
+  .hero-bg img{animation:none;opacity:1;transform:none}
 }
