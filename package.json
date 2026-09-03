@@ -5,9 +5,9 @@
   "description": "Arabic RTL landing page for Sakina, an Islamic spiritual companion app.",
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
     "start": "NODE_ENV=production node .next/standalone/server.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "next build && if [ -d .next/standalone ]; then cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/; fi"
   },
   "dependencies": {
     "next": "^16.1.1",

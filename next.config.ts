@@ -8,7 +8,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // Vercel يعبّئ Next.js بطريقته الأصلية؛ تفعيل standalone هناك يكسر مرحلة
+  // onBuildComplete في Next 16.3.x (ينتظر .next/next-server.js.nft.json فلا يجده).
+  // نُبقي standalone للاستضافة الذاتية فقط.
+  output: process.env.VERCEL ? undefined : "standalone",
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
