@@ -908,10 +908,12 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   overflow:hidden;
   display:flex;flex-direction:column;gap:.9rem;
   padding:1.7rem;
-  background:var(--paper);
-  border:1px solid rgba(43,26,16,.09);
-  border-radius:26px 26px 26px 8px; /* signature cut corner */
-  box-shadow:0 10px 30px -18px rgba(43,26,16,.3);
+  background:linear-gradient(180deg,rgba(253,252,251,.75) 0%,rgba(244,240,234,.60) 100%);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(99%) brightness(102%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturate)) contrast(99%) brightness(102%);
+  border:1px solid var(--glass-border);
+  border-radius:26px;
+  box-shadow:var(--glass-ambient),var(--glass-lensing);
   transition:transform .55s var(--ef),border-color .45s,box-shadow .55s var(--ef);
 }
 .bento-cell::before{ /* ghost numeral watermark */
@@ -923,12 +925,11 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   pointer-events:none;
   transition:color .45s;
 }
-.bento-cell::after{ /* arch glow on hover */
+.bento-cell::after{ /* soft top sheen on hover (no dome) */
   content:'';
-  position:absolute;top:-40%;inset-inline-start:10%;
-  width:80%;height:80%;
-  border-radius:9999px 9999px 40% 40%;
-  background:radial-gradient(ellipse at 50% 100%,rgba(222,171,101,.16),transparent 70%);
+  position:absolute;inset:0;
+  border-radius:inherit;
+  background:linear-gradient(180deg,rgba(222,171,101,.12),transparent 45%);
   opacity:0;
   transition:opacity .55s var(--ef);
   pointer-events:none;
@@ -1116,12 +1117,12 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 
 /* ---- The enshrined page ---- */
 .quran-visual{position:relative;display:grid;place-items:center}
-.quran-visual::before{ /* halo behind the mushaf */
+.quran-visual::before{ /* soft halo behind the mushaf (no dome) */
   content:'';position:absolute;
   width:min(430px,92%);aspect-ratio:1/1.3;
-  border-radius:9999px 9999px 40px 40px;
+  border-radius:2rem;
   background:radial-gradient(ellipse at 50% 30%,rgba(222,171,101,.2),transparent 68%);
-  filter:blur(10px);
+  filter:blur(22px);
   animation:breathe 10s ease-in-out infinite;
 }
 
@@ -1137,7 +1138,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   border:1px solid rgba(201,168,106,.65);
   outline:1px solid rgba(201,168,106,.28);
   outline-offset:7px;
-  border-radius:130px 130px 22px 22px; /* mihrab page */
+  border-radius:1.75rem;
   box-shadow:
     0 50px 90px -30px rgba(0,0,0,.65),
     inset 0 1px 0 rgba(255,255,255,.9);
@@ -1167,7 +1168,7 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   padding:.75rem 1.1rem;
   background:linear-gradient(160deg,rgba(58,37,23,.97),rgba(24,13,7,.97));
   border:1px solid rgba(201,168,106,.4);
-  border-radius:9999px 9999px 1rem 1rem;
+  border-radius:1.1rem;
   box-shadow:0 24px 50px -18px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.1);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
 }
@@ -1250,10 +1251,8 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
    .cut-crystal-panel (authentic app glass, like the reciter cards) with
    uniform, calm rounded corners — no mihrab-niche arch. */
 .azkar-card{
-  min-height:172px;
   padding:1.7rem;
-  display:flex;flex-direction:column;align-items:flex-start;
-  gap:.7rem;
+  display:flex;flex-direction:column;gap:.9rem;
   text-align:right;
   border-radius:26px;
 }
@@ -1276,8 +1275,10 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   transform:translateY(-2px);
 }
 
+.azkar-card-head{
+  display:flex;align-items:center;gap:.85rem;
+}
 .azkar-name{
-  margin-top:.35rem;
   font-weight:900;
   font-size:1.12rem;
   line-height:1.3;
@@ -1392,12 +1393,12 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
     radial-gradient(ellipse 90% 60% at 50% 0%,rgba(222,171,101,.13),transparent 65%),
     linear-gradient(180deg,var(--cream-light),var(--paper));
   border:1px solid rgba(184,138,79,.35);
-  border-radius:110px 110px 24px 24px; /* mihrab arch */
+  border-radius:26px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 12px 30px -16px rgba(43,26,16,.3);
 }
 .prayer-current-card::before{
   content:'';position:absolute;inset:6px;
-  border-radius:100px 100px 19px 19px;
+  border-radius:20px;
   border:1px solid rgba(184,138,79,.2);
   pointer-events:none;
 }
@@ -1583,14 +1584,14 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   padding:clamp(2.8rem,6vw,4.6rem) clamp(1.6rem,5vw,4rem);
   background:linear-gradient(170deg,rgba(255,249,241,.075),rgba(255,249,241,.025));
   border:1px solid rgba(201,168,106,.3);
-  border-radius:200px 200px 34px 34px; /* grand mihrab */
+  border-radius:1.75rem;
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   box-shadow:0 40px 90px -30px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.12);
   text-align:center;
 }
 .final-cta-card::before{
   content:'';position:absolute;inset:9px;
-  border-radius:190px 190px 27px 27px;
+  border-radius:1.35rem;
   border:1px solid rgba(201,168,106,.16);
   pointer-events:none;
 }
@@ -1907,7 +1908,6 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   .quran-visual{order:2}
 
   .azkar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .azkar-card{min-height:160px}
 
   .prayer-inner{grid-template-columns:1fr;gap:3.2rem;max-width:640px}
   .prayer-content{max-width:none;text-align:center}
@@ -1955,7 +1955,6 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
     padding-inline:1.15rem;
   }
   .azkar-grid{grid-template-columns:1fr;gap:.9rem}
-  .azkar-card{min-height:150px}
 
   .prayer-dashboard{padding:.9rem;border-radius:24px}
   .prayer-current-card{min-height:160px;padding:1.2rem 1rem 1rem;gap:.6rem}
