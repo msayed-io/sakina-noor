@@ -130,10 +130,17 @@ button{cursor:pointer}
 
 ::selection{background:var(--honey);color:var(--paper)}
 
-::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:var(--cream-dark)}
-::-webkit-scrollbar-thumb{background:var(--honey);border:2px solid var(--cream-dark);border-radius:99px}
-::-webkit-scrollbar-thumb:hover{background:var(--honey-deep)}
+/* Scrollbar fully hidden — by explicit user mandate.
+   The page still scrolls normally everywhere (wheel, touch, keyboard,
+   drag): hiding is purely visual. Covers every engine:
+   - scrollbar-width:none  → Firefox
+   - -ms-overflow-style    → legacy IE/Edge
+   - ::-webkit-scrollbar   → Chrome / Safari / Edge / Opera */
+html{
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+::-webkit-scrollbar{width:0;height:0;display:none}
 
 :focus-visible{
   outline:2px solid var(--honey-deep);
