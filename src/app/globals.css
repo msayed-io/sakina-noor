@@ -1834,12 +1834,22 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   .hero-stat{padding:0 1.3rem}
 }
 
-/* ---- Device showcase visibility: tablet (iPad ≥768px) and up only.
-     Below that the frame vanishes entirely (display:none = zero
-     reserved space) and the hero shrinks to its text content over the
-     full-viewport photographic backdrop. ---- */
+/* ---- Device showcase on phones (UX audit item 4): the frame used to
+     vanish entirely (display:none) below 768px. It now renders as a
+     compact centered version under the hero copy — the product stays
+     visible on phones while the title, CTAs and stats keep the whole
+     first viewport to themselves. ---- */
 @media(max-width:767px){
-  .hero-visual{display:none}
+  .hero-visual{
+    display:block;
+    min-height:0;
+    width:100%;
+    margin-top:2.2rem;
+  }
+  .phone{
+    width:min(216px,58%);
+    margin-inline:auto;
+  }
 }
 
 /* ---- Nav collapse ---- */
