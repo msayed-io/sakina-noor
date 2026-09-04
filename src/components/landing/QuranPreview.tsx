@@ -2,6 +2,23 @@
 
 import { useEffect } from 'react'
 
+/* ------------------------------------------------------------------
+   Immersive Quran-section background — mandated Cloudinary assets.
+   Mobile: 9:16 portrait · Desktop: 16:9 widescreen. Same responsive
+   <picture> mechanism as the hero, but with THIS section's own links
+   only (never the hero's). Plain <img> is deliberate: next/image
+   cannot art-direct two distinct remote assets via media queries.
+   Below the fold → NO priority/preload (unlike the hero): the default
+   lazy loading starts the fetch well before the user scrolls here,
+   and the dark ink fallback beneath .quran-bg keeps the section
+   presentable even for the first painted frames (zero flash, CLS = 0
+   from the absolute-positioned layer).
+------------------------------------------------------------------- */
+const QURAN_BG_MOBILE =
+  'https://res.cloudinary.com/dubcctda0/image/upload/v1788525556/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A4_%D9%A1%D9%A5%D9%A2%D9%A1%D9%A1%D9%A1%D9%A5%D9%A5%D9%A2_w1x5ld.jpg'
+const QURAN_BG_DESKTOP =
+  'https://res.cloudinary.com/dubcctda0/image/upload/v1788525556/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A4_%D9%A1%D9%A5%D9%A1%D9%A9%D9%A2%D9%A8%D9%A3%D9%A2%D9%A7_l7zgmz.jpg'
+
 const audioUrls = [
   'https://everyayah.com/data/Alafasy_128kbps/001001.mp3',
   'https://everyayah.com/data/Alafasy_128kbps/001002.mp3',
@@ -180,6 +197,22 @@ export default function QuranPreview() {
 
   return (
     <section className="quran-section" id="quran" aria-labelledby="quran-title">
+      {/* Immersive photographic background — smart mobile/desktop switch.
+          Decorative by design: alt="" is the AT hiding mechanism
+          (<picture> itself does not support ARIA attributes). */}
+      <picture className="quran-bg">
+        <source media="(max-width: 768px)" srcSet={QURAN_BG_MOBILE} />
+        <source media="(min-width: 769px)" srcSet={QURAN_BG_DESKTOP} />
+        <img
+          src={QURAN_BG_DESKTOP}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+        />
+      </picture>
+      {/* Cinematic scrim — readability shield floating above the photograph */}
+      <div className="quran-scrim" aria-hidden="true"></div>
       <div className="quran-inner">
         <div className="quran-content">
           <div className="quran-eyebrow reveal">القرآن الكريم</div>

@@ -913,15 +913,39 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
    ================================================================ */
 .quran-section{
   position:relative;
-  background:
-    radial-gradient(ellipse 55% 50% at 25% 30%,rgba(184,138,79,.16),transparent 62%),
-    linear-gradient(200deg,var(--ink-soft) 0%,var(--ink-deep) 55%,#130b06 100%);
+  /* Dark ink fallback UNDER the photo layer: identical tone family to the
+     mandated photograph, so the very first painted frames (before the lazy
+     fetch lands) still look intentional — zero flash, zero empty box. */
+  background:linear-gradient(200deg,var(--ink-soft) 0%,var(--ink-deep) 55%,#130b06 100%);
   color:var(--cream);
   padding:var(--sp) 0;
   overflow:visible;
 }
+/* Immersive photographic background — same proven hero mechanism:
+   <picture> media-switch (mobile 9:16 / desktop 16:9) + cover fill.
+   Sits under the scrim (z1) and the content (z2). Absolute layer → CLS = 0. */
+.quran-bg{
+  position:absolute;inset:0;
+  z-index:0;
+  pointer-events:none;user-select:none;
+}
+.quran-bg img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  display:block;
+}
+/* Cinematic scrim — mandated ink tones for full text readability
+   above the photograph (same pair of values as the hero scrim). */
+.quran-scrim{
+  position:absolute;inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(24,13,7,.72) 0px,
+    rgba(43,26,16,.65) 100%);
+}
 .quran-section::before{
-  content:'';position:absolute;inset:0;
+  content:'';position:absolute;inset:0;z-index:2;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Cg fill='none' stroke='%23deab65' stroke-width='1'%3E%3Cpath d='M44 0v88M0 44h88'/%3E%3Crect x='22' y='22' width='44' height='44'/%3E%3Crect x='22' y='22' width='44' height='44' transform='rotate(45 44 44)'/%3E%3C/g%3E%3C/svg%3E");
   opacity:.05;pointer-events:none;
 }
