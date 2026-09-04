@@ -142,19 +142,34 @@ html{
 }
 ::-webkit-scrollbar{width:0;height:0;display:none}
 
+/* Keyboard focus (UX audit item 6) — one bright universal ring:
+   honey-light reads ~9:1 on every dark surface of this page. No
+   border-radius override here: modern engines draw the outline along
+   the element's own curve (the old .375rem override visually squared
+   the pill buttons while focused). */
 :focus-visible{
-  outline:2px solid var(--honey-deep);
+  outline:2px solid var(--honey-light);
   outline-offset:2px;
-  border-radius:.375rem;
 }
+/* The nav's light glass capsules swallow a bright ring — they wear the
+   darker honey ring instead (kept separate from :focus-visible so the
+   minifier cannot merge them back into one selector list). */
 .nav a:focus-visible{
   outline:2px solid var(--honey-deep);
   outline-offset:2px;
 }
 .qcf-word:focus-visible{
-  outline:2px solid var(--honey-deep);
+  outline:2px solid var(--honey-light);
   outline-offset:1px;
   background:rgba(184,147,90,.16);
+}
+/* Filled-honey surfaces (primary CTA, gold nav capsule) would swallow
+   a honey ring — they get a bright paper ring with a breathing gap.
+   .nav a.nav-cta outranks .nav a:focus-visible ((0,3,1) > (0,2,1)). */
+.nav a.nav-cta:focus-visible,
+.btn-primary:focus-visible{
+  outline:2px solid var(--paper);
+  outline-offset:3px;
 }
 
 /* Editorial type mapping — Thmanyah only, per role */
