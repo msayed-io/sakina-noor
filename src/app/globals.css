@@ -921,13 +921,29 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   padding:var(--sp) 0;
   overflow:visible;
 }
-/* Immersive photographic background — same proven hero mechanism:
-   <picture> media-switch (mobile 9:16 / desktop 16:9) + cover fill.
-   Sits under the scrim (z1) and the content (z2). Absolute layer → CLS = 0. */
+/* Immersive photographic background — the box MATCHES the art's native
+   aspect ratio (16:9 desktop / 9:16 portrait), so the photograph renders
+   at its full original shape: NO cover-zoom, NO side crop. Full-bleed
+   layering previously forced cover into the whole section height and
+   cropped up to ~47% of the image. max-height guards ultra-short
+   sections (only then a gentle edge crop, never distortion).
+   A soft bottom mask melts the art into the ink fallback beneath.
+   Absolute layer → CLS = 0. Sits under scrim (z1) and content (z2). */
 .quran-bg{
-  position:absolute;inset:0;
+  position:absolute;top:0;left:0;
+  width:100%;
+  aspect-ratio:16 / 9;      /* exact native ratio of the landscape asset */
+  max-height:100%;          /* never overflow the section itself */
+  overflow:hidden;
   z-index:0;
   pointer-events:none;user-select:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 62%,transparent 100%);
+}
+/* Portrait viewports are served the 9:16 portrait asset by <picture>
+   above — the box must mirror that same orientation switch exactly. */
+@media (max-width:1024px) and (orientation:portrait){
+  .quran-bg{aspect-ratio:9 / 16}
 }
 .quran-bg img{
   width:100%;height:100%;
