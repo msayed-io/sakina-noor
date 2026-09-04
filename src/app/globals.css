@@ -921,30 +921,45 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   padding:var(--sp) 0;
   overflow:visible;
 }
-/* Immersive photographic background — the FULL art, always.
-   History taught us twice: cover into a full-height section cropped
-   ~47% of the width on tall screens; an aspect-ratio box + max-height
-   still cropped 24% vertically at 1920 and 43% at 2560 (section height
-   stays ~820px while 16:9 of full width keeps growing). So the box is
-   now the whole section and the img uses CONTAIN: mathematically zero
-   crop, zero distortion at any viewport. The empty margin takes the
-   ink fallback beneath, and dual masks (horizontal on the img, vertical
-   on the box) melt every edge into the dark — no hard border, the art
-   reads as a glowing window inside the section.
+/* Immersive photographic background — full-bleed wallpaper, zero crop,
+   at EVERY viewport. The box carries the art's native ratio (16:9
+   landscape / 9:16 portrait, mirroring the <picture> orientation switch
+   exactly) and the SECTION itself reserves room for it on landscape
+   viewports (min-height:56.25vw = width/1.7778, same condition as the
+   desktop <source>). That guarantee means max-height can never bind,
+   so cover inside a ratio-matched box draws the FULL photograph
+   edge-to-edge: no side crop, no top cut, no stretch — the desktop
+   asset fills the desktop screen like a proper wallpaper, growing
+   taller with the section (content centers inside, cinematic).
+   Portrait keeps the approved 9:16 box at the section top, melting
+   into the ink fallback below via the bottom mask.
    Absolute layer → CLS = 0. Sits under scrim (z1) and content (z2). */
 .quran-bg{
-  position:absolute;inset:0;
+  position:absolute;top:0;left:0;
+  width:100%;
+  aspect-ratio:16 / 9;      /* exact native ratio of the landscape asset */
+  max-height:100%;
+  overflow:hidden;
   z-index:0;
   pointer-events:none;user-select:none;
-  -webkit-mask-image:linear-gradient(to bottom,#000 58%,transparent 100%);
-  mask-image:linear-gradient(to bottom,#000 58%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 62%,transparent 100%);
+}
+/* Portrait viewports are served the 9:16 portrait asset by <picture>
+   above — the box must mirror that same orientation switch exactly. */
+@media (max-width:1024px) and (orientation:portrait){
+  .quran-bg{aspect-ratio:9 / 16}
+}
+/* Same condition as the desktop <source>: the section guarantees the
+   art's full 16:9 height, so the box is never height-bound → zero crop
+   at any width. Content centers inside the taller section. */
+@media (orientation:landscape),(min-width:1025px){
+  .quran-section{min-height:56.25vw}
 }
 .quran-bg img{
   width:100%;height:100%;
-  object-fit:contain;object-position:center top;
+  object-fit:cover;object-position:center;
   display:block;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);
 }
 /* Cinematic scrim — mandated ink tones for full text readability
    above the photograph (same pair of values as the hero scrim). */
