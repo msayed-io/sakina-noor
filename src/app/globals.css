@@ -1292,6 +1292,24 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   box-shadow:0 30px 60px -25px rgba(43,26,16,.4),inset 0 1px 0 rgba(255,255,255,.9);
 }
 
+/* UX audit item 3 — the dashboard shows fixed sample data, so an
+   on-brand honey capsule above the board declares it an in-app demo
+   and points to the real behavior (times computed per location). */
+.prayer-demo-note{
+  display:flex;align-items:center;justify-content:center;gap:.45rem;
+  width:fit-content;max-width:100%;
+  margin:0 auto .95rem;
+  padding:.42rem .9rem;
+  background:rgba(184,138,79,.1);
+  border:1px solid rgba(184,138,79,.3);
+  border-radius:9999px;
+  font-size:.72rem;font-weight:700;
+  line-height:1.7;
+  color:var(--ink-muted);
+  text-align:center;
+}
+.prayer-demo-note svg{width:.9rem;height:.9rem;flex:none;color:var(--honey-deep)}
+
 .prayer-dashboard-head{
   display:flex;justify-content:space-between;align-items:center;gap:1rem;
   padding:.3rem .4rem 1.05rem;

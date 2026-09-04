@@ -37,6 +37,14 @@ export default function PrayerSection() {
 
         <div className="prayer-visual reveal">
           <div className="prayer-dashboard" aria-label="لوحة مواقيت الصلاة">
+            {/* UX audit item 3: the dashboard renders fixed sample data
+                (city / date / times). This note states upfront that it is
+                an illustrative in-app preview — the real app computes the
+                times from the user's actual location. */}
+            <div className="prayer-demo-note" role="note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.2" /><path d="M12 11v5.2" /><path d="M12 7.4h.01" /></svg>
+              <span>عرض توضيحي — الأوقات داخل التطبيق حسب موقعك</span>
+            </div>
             <div className="prayer-dashboard-head">
               <div><span className="prayer-dashboard-kicker">اليوم</span><strong>الأحد، 21 يونيو</strong></div>
               <div className="prayer-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>القاهرة</div>
