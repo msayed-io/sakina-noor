@@ -568,87 +568,27 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
    request — the photographic Cloudinary backdrop now provides the real
    architecture; the device floats clean over it. */
 
-/* ---- The device ---- */
+/* ---- The device ----
+   A REALISTIC device frame rendered as a single pre-composed image
+   (transparent iPhone mockup from webmobilefirst.com + the real product
+   screenshot composited behind its screen hole — see
+   public/images/hero-phone-sakina.webp). No CSS-drawn chrome anymore:
+   buttons, island, bezel and screen clipping all live inside the image
+   itself. The wrapper only carries the untouched parallax pose + a
+   silhouette drop-shadow for the floating depth. */
 .phone{
   position:relative;z-index:4;
   width:min(292px,74%);
-  aspect-ratio:9/19;
-  border-radius:46px;
-  background:linear-gradient(150deg,#31200f 0%,#1d1109 45%,#241508 100%);
-  border:1px solid rgba(201,168,106,.4);
-  box-shadow:
-    0 50px 90px -30px rgba(0,0,0,.75),
-    0 0 0 5px rgba(24,13,7,.9),
-    0 0 0 6px rgba(201,168,106,.22),
-    inset 0 1px 0 rgba(255,255,255,.12);
   transform:rotateY(-8deg) rotateX(4deg) rotateZ(2deg);
   transform-style:preserve-3d;
   transition:transform .7s var(--ef);
-  overflow:hidden;
+  filter:drop-shadow(0 46px 58px rgba(0,0,0,.55)) drop-shadow(0 8px 16px rgba(0,0,0,.35));
 }
-.phone-btn-volume,.phone-btn-camera,.phone-btn-power{position:absolute;background:linear-gradient(90deg,#4a3319,#2a1b0d);border-radius:2px}
-.phone-btn-volume{top:19%;inset-inline-start:-3px;width:3px;height:52px}
-.phone-btn-camera{top:30%;inset-inline-start:-3px;width:3px;height:32px}
-.phone-btn-power{top:25%;inset-inline-end:-3px;width:3px;height:64px}
-
-.phone-island{
-  position:absolute;top:12px;left:50%;transform:translateX(-50%);
-  width:32%;height:24px;border-radius:99px;
-  background:#0c0704;
-  border:1px solid rgba(201,168,106,.2);
-  z-index:6;
-}
-
-.phone-screen{
-  position:absolute;inset:7px;
-  border-radius:40px;
-  overflow:hidden;
-  /* Brand-cream underlay — the only thing visible while the live site
-     streams in (doubling as the loading-state base tone). */
-  background:var(--cream);
-}
-
-/* ---- Live site showcase ----
-   The published product streams inside the device via <iframe>.
-   It is a showcase surface, NOT a browser window: pointer events are
-   severed (no click / hover / wheel / touch ever reach the frame), the
-   element is out of the tab order (tabindex=-1 in JSX, no keyboard
-   scroll) and inner scrolling is disabled (scrolling="no"). The page
-   behind scrolls normally over it. A cream skeleton with a soft honey
-   shimmer covers the load, then both layers cross-fade through the
-   brand cream for a seamless reveal. */
-.phone-live{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  border:0;display:block;
-  background:var(--cream);
-  pointer-events:none;
+.phone img{
+  display:block;width:100%;height:auto;
   user-select:none;
-  opacity:0;
-  transition:opacity .8s var(--ef) .2s;
+  -webkit-user-drag:none;
 }
-.phone-live.is-ready{opacity:1}
-
-.phone-live-skeleton{
-  position:absolute;inset:0;z-index:2;
-  background:var(--cream);
-  display:grid;place-items:center;
-  pointer-events:none;
-  transition:opacity .7s var(--ef) .25s,visibility 0s linear 1s;
-}
-.phone-live-skeleton::before{
-  content:'';
-  width:52%;height:9px;border-radius:99px;
-  background:linear-gradient(90deg,rgba(184,138,79,.14),rgba(184,138,79,.45),rgba(184,138,79,.14));
-  background-size:200% 100%;
-  animation:liveSkeletonShimmer 1.6s ease-in-out infinite;
-}
-.phone-live-skeleton.is-ready{opacity:0;visibility:hidden}
-@keyframes liveSkeletonShimmer{0%,100%{opacity:.4}50%{opacity:1}}
-
-/* The former hand-written app mock (status bar, prayer card, hadith card,
-   tab bar) was replaced by design-owner directive with the real published
-   website streaming inside .phone-screen — see .phone-live above. */
 
 /* ================================================================
    MANIFESTO — editorial statement + numbered pillar ledger
@@ -1813,6 +1753,14 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   .hero-stat{padding:0 1.3rem}
 }
 
+/* ---- Device showcase visibility: tablet (iPad ≥768px) and up only.
+     Below that the frame vanishes entirely (display:none = zero
+     reserved space) and the hero shrinks to its text content over the
+     full-viewport photographic backdrop. ---- */
+@media(max-width:767px){
+  .hero-visual{display:none}
+}
+
 /* ---- Nav collapse ---- */
 @media(max-width:900px){
   .nav-links{display:none}
@@ -1862,7 +1810,6 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 
   .hero-stats{gap:1rem 0}
   .hero-stat-value{font-size:1.8rem}
-  .hero-visual{min-height:480px}
 
   .mushaf-preview-shell{padding:1.8rem 1.1rem 3.6rem}
   .mushaf-player{inset-inline:.9rem;padding:.65rem .9rem}

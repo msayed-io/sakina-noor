@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { useEffect } from 'react'
 
 /* ------------------------------------------------------------------
    Immersive hero background — mandated Cloudinary assets (fixed URLs).
@@ -16,15 +17,7 @@ const HERO_BG_MOBILE =
 const HERO_BG_DESKTOP =
   'https://res.cloudinary.com/dubcctda0/image/upload/v1788448076/MEITU_%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A9%D9%A0%D9%A3_%D9%A1%D9%A7%D9%A4%D9%A9%D9%A5%D9%A8%D9%A2%D9%A6%D9%A9_emndof.jpg'
 
-/* Live product showcase — the published website itself, streaming inside
-   the device frame. Fixed URL per design-owner directive. */
-const LIVE_SITE_URL = 'https://sakina-design-transplant.vercel.app/'
-
 export default function Hero() {
-  /* Flips once the live site inside the phone paints its first frame —
-     the brand-cream skeleton then fades out gracefully. */
-  const [liveReady, setLiveReady] = useState(false)
-
   useEffect(() => {
     /* Phone parallax — منطق أصلي حرفيًا */
     const phone = document.querySelector<HTMLElement>('.phone');
@@ -110,34 +103,23 @@ export default function Hero() {
       </div>
 
       <div className="hero-visual">
-        {/* Realistic iPhone 16 Pro Frame */}
+        {/* Realistic device frame (transparent PNG mockup from
+            webmobilefirst.com) with the REAL product screenshot composed
+            behind its screen hole — pixel-exact fill, the frame's own
+            alpha draws the rounded corners and Dynamic Island on top.
+            Delivered by next/image with priority: preloaded alongside the
+            document, sharp at first paint, zero flash. The .phone wrapper
+            keeps the untouched mouse-parallax behavior. */}
         <div className="phone">
-          {/* Side buttons */}
-          <div className="phone-btn-volume"></div>
-          <div className="phone-btn-camera"></div>
-          <div className="phone-btn-power"></div>
-          {/* Dynamic Island (replaces notch) */}
-          <div className="phone-island"></div>
-          <div className="phone-screen">
-            {/* The REAL published website, alive inside the device.
-                A showcase surface — not a browser: pointer events are cut,
-                it is out of the tab order (no keyboard scroll) and inner
-                scrolling is disabled. A brand-cream skeleton with a soft
-                shimmer stands in until the site's first paint, then the
-                two layers cross-fade through the brand cream. */}
-            <iframe
-              className={`phone-live${liveReady ? ' is-ready' : ''}`}
-              src={LIVE_SITE_URL}
-              title="سَكِينَة — الموقع الحي"
-              scrolling="no"
-              tabIndex={-1}
-              onLoad={() => setLiveReady(true)}
-            />
-            <div
-              className={`phone-live-skeleton${liveReady ? ' is-ready' : ''}`}
-              aria-hidden="true"
-            ></div>
-          </div>
+          <Image
+            src="/images/hero-phone-sakina.webp"
+            alt="تطبيق سَكِينَة — واجهة الصلاة على شاشة هاتف"
+            width={778}
+            height={1600}
+            priority
+            sizes="292px"
+            draggable={false}
+          />
         </div>
       </div>
     </section>
