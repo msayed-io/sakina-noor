@@ -1548,7 +1548,10 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
   max-width:34rem;
   font-size:1.04rem;
   line-height:2;
-  color:rgba(236,231,222,.68);
+  /* Contrast fix (UX audit): .68 alpha measured ~5.1:1 against the glass
+     card over the honey glow (worst case). .88 measures ~7.4:1 — solid AA,
+     near AAA, while staying visibly secondary to the pure-cream title. */
+  color:rgba(236,231,222,.88);
 }
 
 .final-cta-buttons{
@@ -1566,7 +1569,9 @@ h1,h2,h3,.nav-brand,.hero-title,.manifesto-title,.features-title,.quran-title,
 .store-badge-icon{color:var(--cream);transition:color .4s}
 .store-badge-icon svg{width:1.55rem;height:1.55rem}
 .store-badge-text{text-align:start}
-.store-badge-small{font-size:.66rem;font-weight:700;color:rgba(236,231,222,.55);transition:color .4s}
+/* .55 alpha measured ~3.9:1 on the glass card — below the 4.5:1 AA floor
+   for this small label. .7 restores ~5.5:1 without changing the hierarchy. */
+.store-badge-small{font-size:.66rem;font-weight:700;color:rgba(236,231,222,.7);transition:color .4s}
 .store-badge-name{font-size:1rem;font-weight:700;color:var(--cream);transition:color .4s}
 .store-badge:hover{
   background:linear-gradient(160deg,var(--honey-light),var(--honey));
