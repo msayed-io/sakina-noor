@@ -4,10 +4,13 @@ import { useEffect } from 'react'
 
 /* ------------------------------------------------------------------
    Immersive Quran-section background — mandated Cloudinary assets.
-   Mobile: 9:16 portrait · Desktop: 16:9 widescreen. Same responsive
-   <picture> mechanism as the hero, but with THIS section's own links
-   only (never the hero's). Plain <img> is deliberate: next/image
-   cannot art-direct two distinct remote assets via media queries.
+   Source selection is by ORIENTATION, not width alone: a portrait
+   tablet (e.g. 820×1180) must get the 9:16 portrait asset — feeding
+   it the 16:9 landscape one forces object-fit:cover to crop ~66% of
+   the image width, which reads as a badly stretched/zoomed backdrop.
+   portrait viewport → portrait art · landscape viewport → 16:9 art.
+   Plain <img> is deliberate: next/image cannot art-direct two
+   distinct remote assets via media queries.
    Below the fold → NO priority/preload (unlike the hero): the default
    lazy loading starts the fetch well before the user scrolls here,
    and the dark ink fallback beneath .quran-bg keeps the section
@@ -201,8 +204,8 @@ export default function QuranPreview() {
           Decorative by design: alt="" is the AT hiding mechanism
           (<picture> itself does not support ARIA attributes). */}
       <picture className="quran-bg">
-        <source media="(max-width: 768px)" srcSet={QURAN_BG_MOBILE} />
-        <source media="(min-width: 769px)" srcSet={QURAN_BG_DESKTOP} />
+        <source media="(max-width: 1024px) and (orientation: portrait)" srcSet={QURAN_BG_MOBILE} />
+        <source media="(orientation: landscape), (min-width: 1025px)" srcSet={QURAN_BG_DESKTOP} />
         <img
           src={QURAN_BG_DESKTOP}
           alt=""
